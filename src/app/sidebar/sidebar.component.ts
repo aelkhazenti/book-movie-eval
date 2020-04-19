@@ -10,6 +10,7 @@ import {Router} from '@angular/router'
 import { Observable} from 'rxjs';
 import {finalize, tap}from 'rxjs/operators'
 import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -58,7 +59,7 @@ data = {
     
 
 
-  constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router) { 
+  constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router,public auth : AuthService ) { 
     
     this.itemFilme = db.list('filme')
     this.itemLivre = db.list('livre')

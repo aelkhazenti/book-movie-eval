@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule,Routes} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage'
+import { AuthService } from './services/auth.service' ; 
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
@@ -20,7 +21,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 const routes:Routes =[
   {  path:'' ,redirectTo:'homecontent',pathMatch:'full'},
@@ -40,7 +43,7 @@ const routes:Routes =[
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
-    
+  
   ],
 
 imports: [
@@ -51,10 +54,16 @@ imports: [
   RouterModule.forRoot(routes),
   AngularFireModule.initializeApp(environment.firebase),
   AngularFireStorageModule,
- 
-  
+  AngularFireAuthModule,
   AngularFireDatabaseModule,
   FormsModule,
+  BrowserAnimationsModule,
+  
+ 
+  
+
+
+
 
 ],
 providers: [],
