@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+<div class="mx-auto" style="width: 100%; padding-left: 250px;padding-top: 20px; ">
+
+
+    <div class="uk-width-2-4" uk-grid >
+        <div>
+    
+            <div class="uk-inline" >
+                <img src="https://getuikit.com/docs/images/photo.jpg" style="  width: 100%;height : 500px;">
+                <div class="uk-overlay uk-overlay-default uk-position-bottom">
+                     <p  >Default Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+    
+        </div>
+    <div>
+    <div class="row">
+        <tr *ngFor="let item of itemArra" >
+           <div style="margin: 15px;">
+        <div class="col-rm-6">
+            <div class="card">
+                <img style="width: 350px;" src="{{item.urlimage}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"> nom de filme : <strong>{{item.nomfilme}} </strong>  </h5>
+                  <p class="card-text">  director <strong>{{item.director}}</strong>  </p>
+                  <p class="card-text"> dure du filme : <strong> {{item.durefilm}} </strong>date :<strong>{{item.datesortie}}  </strong> </p>
+                  <p class="card-text">categorie : <strong>{{item.categorie}} </strong>  </p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted"><ngb-rating [(rate)]="item.note"  [readonly]="readonly"></ngb-rating></small> {{item.note}} /10 prsvote {{item.nbrvote}}
+                </div>
+              </div>
+        </div>
+           </div>
+       </tr>
+      </div>
+
+      <div class="row">
+        <tr *ngFor="let item of itemArraLivre" >
+           <div style="margin: 15px;">
+        <div class="col-rm-6">
+            <div class="card">
+                <img style="width: 350px;" src="{{item.urlimage}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"> nom de livre : <strong>{{item.nomlivre}} </strong>  </h5>
+                   <p > nom d'auteur <strong>{{item.nomauteur}}</strong> </p>
+                  <p class="card-text"> nombre de page  : <strong> {{item.nbrpage}} </strong>date :<strong>{{item.dateparu}}  </strong> </p>
+                  <p class="card-text">categorie : <strong>{{item.categorie}} </strong>  </p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted"><ngb-rating [(rate)]="item.note"  [readonly]="readonly"></ngb-rating></small> {{item.note}} /10  prsvote {{item.nbrvote}}
+                </div>
+              </div>
+        </div>
+           </div>
+       </tr>
+      </div>
+
+</div>
+
+    </div>
+</div>
+
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.1/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.4.1/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.4.1/dist/js/uikit-icons.min.js"></script>

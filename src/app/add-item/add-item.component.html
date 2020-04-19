@@ -1,0 +1,195 @@
+<app-navbar></app-navbar>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+  
+
+
+<div class="card" style="background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 27px;" >
+<div class="row"  >
+
+    <div class="col-md-4"> 
+        <div *ngIf="!itsBook">
+            <img src="../../assets/undraw_movie_night_fldd.svg" style="width: 100%;" > 
+        </div>
+        <div *ngIf="itsBook" >
+        <img src="../../assets/undraw_book_lover_mkck.svg" style="width: 100%;" > 
+    </div>
+   
+    </div>
+
+    <div class="card-body col-md-8" style="background: #F1F1F3;
+    border-radius: 29px;">
+        
+        <form>
+            <div class="card bg-light"  >
+                <div class="card-header bg-info" *ngIf="itsBook">
+                  ajouter un Livre
+                </div>
+                <div class="card-header bg-info" *ngIf="!itsBook">
+                    ajouter un film
+                  </div>
+
+
+
+
+
+
+<div *ngIf="itsBook">
+    <div class="form-row">
+
+
+
+
+
+        <!-- /////////////////// start livre forume /////////////////////// -->
+
+                <div class="form-group col-md-6">
+                    <label >Nom du livre </label>
+                    <input type="text" class="form-control"  placeholder="Nom Du livre" name="nomlivre" [(ngModel)]="data.nomlivre" >
+                  </div>
+                  <div class="form-group col-md-6">
+                    
+                    <label >non d'auteur</label>
+                    <input type="text" class="form-control"  placeholder="nom d'auteur" name="nomauteur" [(ngModel)]="data.nomauteur" >
+                   
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label >Date de parution </label>
+                    <input type="date" class="form-control"  placeholder="Date de parution " name="dateparu" [(ngModel)]="data.dateparu" >
+                  </div>
+                  <div class="form-group col-md-6">
+                    
+                    <label >nombre de page </label>
+                    <input type="text" class="form-control"  placeholder="nom d'auteur" name="nbrpage" [(ngModel)]="data.nbrpage" >
+                   
+                  </div>
+        <div class="form-group col-md-6">
+          <label >lien d'image</label>
+          <input type="text" (change)="changem($event)" id="urllll" class="form-control" placeholder="le lien d'image" [value]="urlimage | async " name="urlimage" [(ngModel)]="data.urlimage">
+        </div>
+        <div class="form-group col-md-6">
+            <label >upload photos</label>
+            <input type="file" class="form-control-file"  type="file" (change)="upload($event)" accept=".png,.jpg">
+
+
+
+
+
+        </div>
+        
+    
+      </div>
+</div>
+        <!-- /////////////////// fin livre forume /////////////////////// -->
+
+
+
+
+                  <!-- /////////////////// start Filme forme /////////////////////// -->
+                  <div *ngIf="!itsBook">
+                    <div class="form-row"  >
+
+
+              <div class="form-group col-md-6">
+                <label >Nom de filme</label>
+                <input type="text" class="form-control"  placeholder="Nom De Filme" name="nomfilme" [(ngModel)]="data.nomfilme" >
+              </div>
+              <div class="form-group col-md-6">
+                
+                <label >la duré de filme</label>
+                <input type="text" class="form-control"  placeholder="la duré de filme" name="durefilm" [(ngModel)]="data.durefilm" >
+               
+              </div>
+            </div>
+          
+
+    
+      
+             
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label >date de sortie</label>
+                  <input type="date" class="form-control"   name="datesortie" [(ngModel)]="data.datesortie" >
+                </div>
+                <div class="form-group col-md-6">
+                    <label >Director du filme</label>
+                    <input type="text" class="form-control"  placeholder="Director du filme" name="director" [(ngModel)]="data.director" >
+                </div>
+                
+            
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label >lien d'image</label>
+                  <input type="text" (change)="changem($event)" id="urllll" class="form-control" placeholder="le lien d'image" [value]="urlimage | async " name="urlimage" [(ngModel)]="data.urlimage">
+                </div>
+                <div class="form-group col-md-6">
+                    <label >upload photos</label>
+                    <input type="file" class="form-control-file"  type="file" (change)="upload($event)" accept=".png,.jpg">
+  
+                </div>
+                
+            
+              </div>
+              
+            </div>
+
+            
+                  <!-- /////////////////// fin  Filme forme /////////////////////// -->
+
+
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label >choisir votre type </label>
+                  <select class="form-control" name="spes" [(ngModel)]="data.type" (change)="changeItem($event)" >
+                      <option >Livre </option>
+                      <option> Filme</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label >catégorie</label>
+                    <select class="form-control" name="niveaux" [(ngModel)]="data.categorie"  >
+                        <option >Drame  </option>
+                        <option > Comédie</option>
+                        <option >action  </option>
+                        <option> fantastique</option>
+                        <option >'horreur</option>
+                        <option >Thriller </option>
+                        <option selected >   </option>
+                      </select>
+                </div>
+              </div>
+
+
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div style="padding-left: 80%;">
+                <button type="button" class="btn btn-success" (click)="isallinsert()">enregistrer</button>
+            </div>
+                </div>
+              </div>
+
+    
+          </div> 
+        
+ 
+          </form>
+    </div>
+
+
+</div>
+
+</div>

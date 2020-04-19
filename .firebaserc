@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "book-eval": {
+      "hosting": {
+        "book-movie-eval": [
+          "book-eval"
+        ]
+      }
+    }
+  }
+}

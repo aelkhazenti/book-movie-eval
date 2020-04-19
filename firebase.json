@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "book-movie-eval",
+      "public": "dist/book-movie-eval",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
