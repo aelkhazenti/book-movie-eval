@@ -16,7 +16,7 @@ import { AuthService } from './services/auth.service' ;
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
-import {  FormsModule} from '@angular/forms';
+import {  FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
@@ -57,6 +57,7 @@ imports: [
   AngularFireAuthModule,
   AngularFireDatabaseModule,
   FormsModule,
+  ReactiveFormsModule,
   BrowserAnimationsModule,
   
  

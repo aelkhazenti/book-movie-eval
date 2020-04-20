@@ -1,1 +1,84 @@
-<p>signup works!</p>
+
+<app-navbar></app-navbar>
+
+
+<div style=" margin-top: 57px;"></div>
+
+
+
+  
+<div class="card" style=" background: linear-gradient(269.37deg, #74B4FF -7.4%, rgba(255, 255, 255, 0) 104.68%), #A9E5FF;" >
+    <div class="row">
+    
+        <div class="col-md-5"> <img src="../../assets/undraw_register.svg " style="width: 100%;" > </div>
+    
+        <div class="card-body col-md-7 " style="background: #FFFFFF;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 27px;" >
+  
+            <h2 style="font-family: Abhaya Libre SemiBold;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            line-height: 35px;
+            
+            color: #000000;" >register</h2>
+
+          <hr style="border: 2px solid #56CCFF;">
+
+          <form >
+            <div class="container" >
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="uname"><b>Nom</b></label>
+                        <input type="text" class="form-control"  placeholder="Nom" name="nomProduit"  >
+                      </div>
+                      <div class="form-group col-md-6">
+                        
+                          <label for="uname"><b>Prenom</b></label>
+                        <input type="text" class="form-control"  placeholder="Prenom" name="nomProduit"  >
+                      </div>
+                </div>
+        
+              <label for="uname"><b>email</b></label>
+              <input type="text" placeholder="Email" name="uname" required  [(ngModel)]="email" >
+          
+              <div class="form-group">
+                <label for="password"><strong>Password</strong></label>
+                <input type="password" class="form-control" id="password" [(ngModel)]="signup.password" [(ngModel)]="mdp" name="password" (blur)="confirmPassword()" required placeholder="Password" #pswd="ngModel"/>
+              </div>
+              <div [hidden]="pswd.valid || pswd.pristine" class="alert alert-danger">Password is required</div>
+              <div class="form-group">
+                <label for="cnfpassword"><strong>Confirm password</strong></label>
+                <input type="password" class="form-control" id="cnfpassword" [(ngModel)]="passwordConfirmationTxt" required (blur)="confirmPassword()" name="passwordConfirmationTxt"/>
+              </div>
+               
+               
+              <div [hidden]="!passwordConfirmationFailed" class="alert alert-danger">Password did not match</div>
+              
+              <button type="button"  class="pure-button pure-button-primary" (click)="register()" style="margin-left: 15%; width: 25%;  background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
+              border-radius: 50px; " >  register</button>
+              
+              <button type="button"  class="pure-button pure-button-primary text-secondary" (click)="register()" style=" margin-left: 25%;  width: 25%; background: #FFFFFF;
+              border: 1px solid #60C6FF;
+              box-sizing: border-box;
+              border-radius: 50px; text-decoration-color: black ; " >   annuler</button>
+            </div>
+        </form>
+        
+
+
+  
+          </div>
+
+
+          </div>
+
+<!-- <div >
+<br><br><br><br><br><br><br><br><br><br><br>
+</div> -->
+
+
+  </div>
+  
+
