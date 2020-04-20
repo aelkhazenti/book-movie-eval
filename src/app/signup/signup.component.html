@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 
 
-<div style=" margin-top: 57px;"></div>
+<div style=" margin-top: 58px;"></div>
 
 
 
@@ -31,14 +31,33 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="uname"><b>Nom</b></label>
-                        <input type="text" class="form-control"  placeholder="Nom" name="nomProduit"  >
+                        <input type="text" class="form-control"  placeholder="Nom" name="nomUtil"  >
                       </div>
                       <div class="form-group col-md-6">
                         
                           <label for="uname"><b>Prenom</b></label>
-                        <input type="text" class="form-control"  placeholder="Prenom" name="nomProduit"  >
+                        <input type="text" class="form-control"  placeholder="Prenom" name="prenomUtil"  >
                       </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="uname"><b> Username </b></label>
+                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter your username" name="username" >
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="uname"><b>Sex</b></label>
+                        
+                        <div class="form-group">
+                            
+                            <select class="form-control" id="exampleFormControlSelect1">
+                              <option> </option>
+                              <option>M</option>
+                              <option>F</option>
+                            </select>
+                          </div>
+                      </div>
+                </div>
+
         
               <label for="uname"><b>email</b></label>
               <input type="text" placeholder="Email" name="uname" required  [(ngModel)]="email" >
@@ -59,12 +78,14 @@
               <button type="button"  class="pure-button pure-button-primary" (click)="register()" style="margin-left: 15%; width: 25%;  background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
               border-radius: 50px; " >  register</button>
               
-              <button type="button"  class="pure-button pure-button-primary text-secondary" (click)="register()" style=" margin-left: 25%;  width: 25%; background: #FFFFFF;
+              <button type="button"  class="pure-button pure-button-primary text-info" (click)="register()" style=" margin-left: 25%;  width: 30%; background: #FFFFFF;
               border: 1px solid #60C6FF;
               box-sizing: border-box;
-              border-radius: 50px; text-decoration-color: black ; " >   annuler</button>
+              border-radius: 50px; text-decoration-color: black ; " > <img src="../../assets/google-brands.svg"  style="width: 30px;" >  register whith google</button>
             </div>
+            
         </form>
+        
         
 
 
@@ -74,9 +95,7 @@
 
           </div>
 
-<!-- <div >
-<br><br><br><br><br><br><br><br><br><br><br>
-</div> -->
+
 
 
   </div>

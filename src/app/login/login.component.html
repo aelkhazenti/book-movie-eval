@@ -1,25 +1,68 @@
-<div *ngIf="auth.user$ | async; then authenticated else guest">
-    <!-- template will replace this div -->
-</div>
 
-<!-- User NOT logged in -->
-<ng-template #guest>
-<h3>Howdy, GUEST</h3>
-<p>Login to get started...</p>
-
-<button (click)="auth.googleSignin()">
-    <i class="fa fa-google"></i> Connect Google
-</button>
-
-</ng-template>
+<app-navbar></app-navbar>
 
 
-<!-- User logged in -->
-<ng-template #authenticated>
-<div *ngIf="auth.user$ | async as user">
-    <h3>Howdy, {{ user.displayName }}</h3>
-    <img  [src]="user.photoURL">
-    <p>UID: {{ user.uid }}</p>
-    <button (click)="auth.signOut()">Logout</button>
-</div>
-</ng-template>
+<div style=" margin-top: 58px;"></div>
+
+
+
+  
+<div class="card" style="background: #FFFFFF;" >
+    <div class="row">
+    
+        <div class="col-md-6"> <img src="../../assets/undraw_login.svg" style="width: 90%;" > </div>
+    
+        <div class="card-body col-md-6 " style="background: #F1F1F3;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px; height: 75%; margin-top: 5%; " >
+  
+            <h2 style="font-family: Abhaya Libre SemiBold;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            line-height: 35px;
+            
+            color: #000000;" >LOGIN</h2>
+
+          <hr style="border: 2px solid #56CCFF;">
+
+          <form >
+            <div class="container" >
+
+
+        
+              <label for="uname"><b>email</b></label>
+              <input type="text" placeholder="Email" name="uname" required  [(ngModel)]="email" >
+              <label for="uname"><b>mot de passe</b></label>
+              <input type="text" placeholder="mot de passe" name="mdp" required  [(ngModel)]="mdp" >
+        
+               
+               
+              <div [hidden]="!passwordConfirmationFailed" class="alert alert-danger">Password did not match</div>
+              
+              <button type="button"  class="pure-button pure-button-primary" (click)="register()" style="margin-left: 15%; width: 25%;  background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
+              border-radius: 50px; " >  login</button>
+              
+              <button type="button"  class="pure-button pure-button-primary text-info" (click)="register()" style=" margin-left: 25%;  width: 25%; background: #FFFFFF;
+              border: 1px solid #60C6FF;
+              box-sizing: border-box;
+              border-radius: 50px;" > <img src="../../assets/google-brands.svg"  style="width: 35px;" >  login </button>
+            </div>
+            
+        </form>
+        
+        
+
+
+  
+          </div>
+
+
+          </div>
+
+
+
+
+  </div>
+  
+

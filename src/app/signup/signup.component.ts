@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

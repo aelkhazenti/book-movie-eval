@@ -25,6 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
+
 const routes:Routes =[
   {  path:'' ,redirectTo:'homecontent',pathMatch:'full'},
   {path:'home' , component:HomeComponent},
@@ -61,8 +62,6 @@ imports: [
   BrowserAnimationsModule,
   
  
-  
-
 
 
 
