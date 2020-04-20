@@ -39,8 +39,7 @@ export class HomeComponent implements OnInit {
     this.itemLivre = db.list('livre')
 
     this.itemArra=[]
-   
-    
+      
         this.itemFilme = this.db.list('/filme')
     
         this.itemFilme.snapshotChanges().subscribe(actions=>{
@@ -50,12 +49,8 @@ export class HomeComponent implements OnInit {
             this.itemArra.push(y as listfilm ) 
           })
         })
-
         console.log(this.itemArra)
-
-
         this.itemArraLivre=[]
-
 this.itemLivre = this.db.list('/livre')
 
 this.itemLivre.snapshotChanges().subscribe(actions=>{
@@ -66,9 +61,11 @@ this.itemLivre.snapshotChanges().subscribe(actions=>{
 
   })
 })
-
-
 console.log(this.itemArraLivre)
+
+
+
+
 
 
 

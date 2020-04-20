@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators,FormGroup,FormBuilder} from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Validators,FormGroup,FormBuilder,AbstractControl} from '@angular/forms';
+import { AngularFireAuth,AngularFireAuthModule } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { map, take, debounceTime } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -35,8 +38,9 @@ imgURLM:String='https://www.w3schools.com/howto/img_avatar.png'
   username:String='';
   sex:String='';
 
-
-  constructor(private fire:AngularFireAuth ,public router:Router , private formBuilder: FormBuilder,private auth:AuthService){}
+  loginForm: FormGroup;
+  constructor(private fire:AngularFireAuth ,public router:Router , private formBuilder: FormBuilder,
+    private auth:AuthService,private afs: AngularFirestore, private fb: FormBuilder){}
 
   ngOnInit() {
 
@@ -46,8 +50,7 @@ imgURLM:String='https://www.w3schools.com/howto/img_avatar.png'
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
-  }, {
-      
+  }, {     
   });
 
     
@@ -69,7 +72,11 @@ register(){
 
   this.fire.createUserWithEmailAndPassword(this.email,this.mdp)
   .then(user=>{
-    console.log("correct")
+    Swal.fire(
+      'Good job!',
+      'You clicked the button!',
+      'success'
+    )
     
       this.router.navigate(['home'])
     }) .catch(error=>{
@@ -87,11 +94,23 @@ registerEmail(){
     if(this.sex=="F"){
 
       this.auth.loginWithemail(this.email,this.mdp,this.username,this.imgURLF)
-    
+      Swal.fire({
+        icon: 'success',
+        title: 'votre compte a ete cree avec succes',
+        showConfirmButton: false,
+        timer: 1500
+      })
+  
     }if(this.sex=="M"){
     
       this.auth.loginWithemail(this.email,this.mdp,this.username,this.imgURLM)
-    
+      Swal.fire({
+        icon: 'success',
+        title: 'votre compte a ete cree avec succes',
+        showConfirmButton: false,
+        timer: 1500
+      })
+  
     }
 
     
@@ -112,6 +131,8 @@ changesex(event){
 }
 
 
+
+
 }
 
 
@@ -125,5 +146,4 @@ export class Signup {
   ) {  }
  
 }
-
 

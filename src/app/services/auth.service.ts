@@ -60,8 +60,6 @@ export class AuthService {
     async signOut() {
       await this.afAuth.signOut();
 
-      // console.log
-      // this.router.navigate(['homecontent'])
     }
 
    async loginWithemail(email,mdp,username,imgURL){
@@ -87,7 +85,7 @@ export class AuthService {
   
       return userRef.set(data, { merge: true })
 
-        this.router.navigate(['/'])
+        
     }
 
 

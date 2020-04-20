@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../services/auth.service';
 import{ Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,14 @@ export class LoginComponent implements OnInit {
 
 login(){
  this. auth.loginwhithemailandpass(this.email,this.mdp)
+
+ Swal.fire({
+  icon: 'success',
+  title: 'welcome back',
+  showConfirmButton: false,
+  timer: 1500
+})
+
  this.router.navigate(['/'])
 }
 loginGoogle(){
