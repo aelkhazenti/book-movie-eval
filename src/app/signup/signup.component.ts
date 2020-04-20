@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators,FormGroup,FormBuilder} from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -28,11 +28,15 @@ export class SignupComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-
+imgURLF:String='https://www.w3schools.com/howto/img_avatar2.png';
+imgURLM:String='https://www.w3schools.com/howto/img_avatar.png'
   email:string = '';
   mdp:string = ''; 
+  username:String='';
+  sex:String='';
 
-  constructor(private fire:AngularFireAuth ,public router:Router , private formBuilder: FormBuilder){}
+
+  constructor(private fire:AngularFireAuth ,public router:Router , private formBuilder: FormBuilder,private auth:AuthService){}
 
   ngOnInit() {
 
@@ -73,6 +77,38 @@ register(){
       this.router.navigate(['admin'])
     });
   
+}
+
+registerEmail(){
+
+  this.fire.createUserWithEmailAndPassword(this.email,this.mdp)
+  .then(user=>{
+    console.log("correct")
+    if(this.sex=="F"){
+
+      this.auth.loginWithemail(this.email,this.mdp,this.username,this.imgURLF)
+    
+    }if(this.sex=="M"){
+    
+      this.auth.loginWithemail(this.email,this.mdp,this.username,this.imgURLM)
+    
+    }
+
+    
+    }) .catch(error=>{
+      console.error(error)
+      this.router.navigate(['admin'])
+    });
+
+
+  this.router.navigate(['/'])
+
+}
+
+changesex(event){
+
+  this.sex = event.target.value;
+
 }
 
 

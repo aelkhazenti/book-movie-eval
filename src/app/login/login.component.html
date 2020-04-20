@@ -34,19 +34,17 @@
               <label for="uname"><b>email</b></label>
               <input type="text" placeholder="Email" name="uname" required  [(ngModel)]="email" >
               <label for="uname"><b>mot de passe</b></label>
-              <input type="text" placeholder="mot de passe" name="mdp" required  [(ngModel)]="mdp" >
+              <input type="password" placeholder="mot de passe" name="mdp" required  [(ngModel)]="mdp" >
         
                
-               
-              <div [hidden]="!passwordConfirmationFailed" class="alert alert-danger">Password did not match</div>
               
-              <button type="button"  class="pure-button pure-button-primary" (click)="register()" style="margin-left: 15%; width: 25%;  background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
-              border-radius: 50px; " >  login</button>
+              <button type="button"  class="pure-button pure-button-primary" style="margin-left: 15%;
+              width: 25%;
+              background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
+              border-radius: 50px;" (click)="login()" > login</button>
               
-              <button type="button"  class="pure-button pure-button-primary text-info" (click)="register()" style=" margin-left: 25%;  width: 25%; background: #FFFFFF;
-              border: 1px solid #60C6FF;
-              box-sizing: border-box;
-              border-radius: 50px;" > <img src="../../assets/google-brands.svg"  style="width: 35px;" >  login </button>
+              <button type="button"  class="pure-button pure-button-primary text-info"  style=" margin-left: 25%;  width: 25%; background: #FFFFFF;
+              border: 1px solid #60C6FF; box-sizing: border-box;border-radius: 50px;"  (click)="loginGoogle()"> <img src="../../assets/google-brands.svg"  style="width: 30px;" > Google login </button>
             </div>
             
         </form>

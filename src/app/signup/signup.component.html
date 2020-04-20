@@ -42,14 +42,14 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="uname"><b> Username </b></label>
-                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter your username" name="username" >
+                        <input class="form-control" id="exampleInputEmail1" placeholder="Enter your username" name="username" [(ngModel)]="username"  >
                       </div>
                       <div class="form-group col-md-6">
                         <label for="uname"><b>Sex</b></label>
                         
                         <div class="form-group">
                             
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control" id="exampleFormControlSelect1" (change)="changesex($event)"  >
                               <option> </option>
                               <option>M</option>
                               <option>F</option>
@@ -69,15 +69,22 @@
               <div [hidden]="pswd.valid || pswd.pristine" class="alert alert-danger">Password is required</div>
               <div class="form-group">
                 <label for="cnfpassword"><strong>Confirm password</strong></label>
-                <input type="password" class="form-control" id="cnfpassword" [(ngModel)]="passwordConfirmationTxt" required (blur)="confirmPassword()" name="passwordConfirmationTxt"/>
+                <input type="password" class="form-control" id="cnfpassword" [(ngModel)]="passwordConfirmationTxt" placeholder="Confirm password" required (blur)="confirmPassword()" name="passwordConfirmationTxt"/>
               </div>
                
                
               <div [hidden]="!passwordConfirmationFailed" class="alert alert-danger">Password did not match</div>
               
-              <button type="button"  class="pure-button pure-button-primary" (click)="register()" style="margin-left: 15%; width: 25%;  background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
-              border-radius: 50px; " >  register</button>
-              
+              <button type="button"  class="pure-button pure-button-primary" 
+              style="margin-left: 15%; width: 25%;  background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
+              border-radius: 50px; " 
+              (click)="registerEmail()" >  register</button>
+
+
+
+              <!-- (click)="auth.loginWithemail(email,mdp)" -->
+
+
               <button type="button"  class="pure-button pure-button-primary text-info" (click)="register()" style=" margin-left: 25%;  width: 30%; background: #FFFFFF;
               border: 1px solid #60C6FF;
               box-sizing: border-box;
