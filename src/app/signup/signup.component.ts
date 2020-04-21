@@ -67,7 +67,11 @@ imgURLM:String='https://www.w3schools.com/howto/img_avatar.png'
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
 }
-
+loginGoogle(){
+  this. auth.googleSignin()
+ 
+  this.router.navigate(['/'])
+ }
 register(){
 
   this.fire.createUserWithEmailAndPassword(this.email,this.mdp)
@@ -130,7 +134,10 @@ changesex(event){
 
 }
 
-
+facebookSignin(){
+  this.auth.facebookSignin()
+  this.router.navigate(['/'])
+}
 
 
 }

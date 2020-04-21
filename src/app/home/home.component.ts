@@ -10,6 +10,7 @@ import {Router} from '@angular/router'
 import { Observable} from 'rxjs';
 import {finalize, tap}from 'rxjs/operators'
 import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-home',
@@ -18,26 +19,27 @@ import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
 })
 export class HomeComponent implements OnInit {
   
+  stars : Observable<any>
+  avgRating:Observable<any>
   
+
   itemFilme :AngularFireList<any>; 
   itemLivre :AngularFireList<any>; 
   itemArraLivre=[]
-
-
+  itemList :AngularFireList<any>;
+readonlyforme = false;
   
-  readonly = false;
-  selected = 8;
-  itemArra=[
-    
+  readonly = true;
+  
+  itemArra=[]
 
-  ]
 
  
-   constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router) { 
+   constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router,private afs: AngularFirestore) { 
     
     this.itemFilme = db.list('filme')
     this.itemLivre = db.list('livre')
-
+    this.itemList = db.list('stars')
     this.itemArra=[]
       
         this.itemFilme = this.db.list('/filme')
@@ -66,13 +68,41 @@ console.log(this.itemArraLivre)
 
 
 
+  }
+  
+
+  votre_Vote(item){
+
+   var userId:String  = localStorage.getItem("uiduser")
+   var movieId = item;
+   var value = item.note
+
+  var keymovi=item.$key
+  console.log(keymovi)
+    if(userId==null){
+alert("vous devez connecter ")
+    }else{
+      console.log(userId)
+      const star: Star ={ userId, movieId, value }
+
+      // Custom doc ID for relationship
+      const starPath = `stars/${star.userId}/${keymovi}`;
+  
+      const pathst = star.userId+'/'+keymovi
+      // Set the data, return the promise
+      return this.afs.doc(pathst).set(star)
 
 
+    }
+ 
 
   }
 
 
+
+
   ngOnInit() {
+
   }
 
 }
@@ -109,4 +139,10 @@ export class listfilm {
   note:String;
   nbrvote:String;
 
+}
+
+export interface Star {
+  userId: String;
+  movieId: any;
+  value: number;
 }

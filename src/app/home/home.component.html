@@ -17,12 +17,13 @@
     
         </div>
     <div>
+      
     <div class="row">
         <tr *ngFor="let item of itemArra" >
            <div style="margin: 15px;">
         <div class="col-rm-6">
             <div class="card">
-                <img style="width: 350px;" src="{{item.urlimage}}" alt="Card image cap">
+                <img style="width: 350px; height: 400px;" src="{{item.urlimage}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title"> nom de filme : <strong>{{item.nomfilme}} </strong>  </h5>
                   <p class="card-text">  director <strong>{{item.director}}</strong>  </p>
@@ -30,28 +31,39 @@
                   <p class="card-text">categorie : <strong>{{item.categorie}} </strong>  </p>
                 </div>
                 <div class="card-footer">
-                  <small class="text-muted"><ngb-rating [(rate)]="item.note"  [readonly]="readonly"></ngb-rating></small> {{item.note}} /10 prsvote {{item.nbrvote}}
+                  <small class="text-muted"> votre vote : <ngb-rating [(rate)]="item.note" [readonly]="readonlyforme" (click)="votre_Vote(item)"  ></ngb-rating ></small> 
+                  <br>
+                  <small class="text-muted"><ngb-rating [(rate)]="item.note"  [readonly]="readonly"></ngb-rating></small><small > {{item.note}} /10  prsonne vote : {{item.nbrvote}} </small>
+                  <!-- <button (click)="keydevote(item.$key)">vo</button> -->
                 </div>
+              
+
+
               </div>
         </div>
            </div>
        </tr>
       </div>
-
+      <hr style="border: 2px solid #56CCFF;">
+      <h3 style="text-align: center;" class="text-info" > Livre </h3>
+        <hr style="border: 2px solid #56CCFF;">
       <div class="row">
         <tr *ngFor="let item of itemArraLivre" >
            <div style="margin: 15px;">
         <div class="col-rm-6">
             <div class="card">
-                <img style="width: 350px;" src="{{item.urlimage}}" alt="Card image cap">
+                <img style="width: 350px; height: 400px; " src="{{item.urlimage}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title"> nommm de livre : <strong>{{item.nomlivre}} </strong>  </h5>
                    <p > nom d'auteur <strong>{{item.nomauteur}}</strong> </p>
                   <p class="card-text"> nombre de page  : <strong> {{item.nbrpage}} </strong>date :<strong>{{item.dateparu}}  </strong> </p>
                   <p class="card-text">categorie : <strong>{{item.categorie}} </strong>  </p>
                 </div>
+                
                 <div class="card-footer">
-                  <small class="text-muted"><ngb-rating [(rate)]="item.note"  [readonly]="readonly"></ngb-rating></small> {{item.note}} /10  prsvote {{item.nbrvote}}
+                  <small class="text-muted"> votre vote : <ngb-rating [(rate)]="item.note"  [readonly]="readonlyforme"></ngb-rating></small> 
+                  <br>
+                  <small class="text-muted"><ngb-rating [(rate)]="item.note"  [readonly]="readonly"></ngb-rating></small> {{item.note}} /10  prsonne vote : {{item.nbrvote}}
                 </div>
               </div>
         </div>

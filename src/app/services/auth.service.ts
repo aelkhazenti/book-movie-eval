@@ -12,6 +12,7 @@ import { switchMap } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
+  uid_user:String;
     user$: Observable<User>;
 
     constructor(
@@ -34,10 +35,18 @@ export class AuthService {
       )
 
      }
-
+     async facebookSignin() {
+      
+      const provider = new auth.FacebookAuthProvider
+      
+      const credential = await this.afAuth.signInWithPopup(provider);
+      return this.updateUserData(credential.user);
+    }
 
      async googleSignin() {
       const provider = new auth.GoogleAuthProvider();
+      
+      
       const credential = await this.afAuth.signInWithPopup(provider);
       return this.updateUserData(credential.user);
     }
@@ -53,12 +62,17 @@ export class AuthService {
         photoURL: user.photoURL
       } 
   
+      localStorage.setItem("uiduser",user.uid)
+      localStorage.setItem("uiduseSSr",user.photoURL)
       return userRef.set(data, { merge: true })
   
     }
   
     async signOut() {
+      localStorage.removeItem("uiduser")
+      localStorage.removeItem("uiduseSSr")
       await this.afAuth.signOut();
+      
 
     }
 
@@ -91,15 +105,25 @@ export class AuthService {
 
 
     async loginwhithemailandpass(email,mdp){
-       await this.afAuth.signInWithEmailAndPassword(email,mdp)
+      await this.afAuth.signInWithEmailAndPassword(email,mdp)
+      const credential =  await this.afAuth.signInWithEmailAndPassword(email,mdp)
 
+
+      localStorage.setItem("uiduser",credential.user.uid)
+      this.setuser(credential.user)
        this.router.navigate(['/'])
       
     }
     
 
+    getuser(){
+      console.log("adadad  "+this.uid_user)
+      return this.uid_user
+    }
 
-
+setuser(user){
+  this.uid_user=user.uid
+}
     
 
 }

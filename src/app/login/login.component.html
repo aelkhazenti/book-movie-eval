@@ -39,13 +39,17 @@
               <input type="password" placeholder="mot de passe" name="mdp" required  [(ngModel)]="mdp" >
     
               
-              <button type="button"  class="pure-button pure-button-primary" style="margin-left: 15%;
+              <button type="button"  class="pure-button pure-button-primary" style="margin-left: 5%;
               width: 25%;
               background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
               border-radius: 50px;" (click)="login()" > login</button>
               
-              <button type="button"  class="pure-button pure-button-primary text-info"  style=" margin-left: 25%;  width: 25%; background: #FFFFFF;
-              border: 1px solid #60C6FF; box-sizing: border-box;border-radius: 50px;"  (click)="loginGoogle()"> <img src="../../assets/google-brands.svg"  style="width: 30px;" > Google login </button>
+              <button type="button"  class="pure-button pure-button-primary text-info"  style=" margin-left: 7%;  width: 25%; background: #FFFFFF;
+              border: 1px solid #60C6FF; box-sizing: border-box;border-radius: 50px;"  (click)="loginGoogle()"> <img src="../../assets/google-brands.svg"  style="width: 20px;" > Google login </button>
+
+<button type="button"  class="pure-button pure-button-primary text-info"  style=" margin-left: 7%;  width: 26%; background: rgba(12, 156, 240, 0.486);
+border: 1px solid #60C6FF; box-sizing: border-box;border-radius: 50px;"  (click)="facebookSignin()"> <img src="../../assets/facebook-brands (1).svg"  style="width: 20px;" > facebook login </button>
+
             </div>
             
         </form>

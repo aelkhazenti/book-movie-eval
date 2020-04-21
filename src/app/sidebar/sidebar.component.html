@@ -23,10 +23,11 @@
              
               <ul class="list-group">
                   <!-- Separator with title -->
+                  <div *ngIf="auth.user$ | async as user">
                   <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
                     <small>profile</small>
                 </li>
-                <div *ngIf="auth.user$ | async as user">
+                
                     <div class="d-flex w-100 justify-content-start align-items-center" style="width: 150px; padding-left: 10px; " >
                         <img [src]="user.photoURL" alt="Avatar" style="width: 200px;border-radius: 50%;" >
                     </div>
@@ -34,10 +35,16 @@
                     <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="fa fa-dashboard fa-fw mr-3"></span> 
-                            <span class="menu-collapsed" href="/home" > {{ user.displayName }} </span>
+                            <a class="menu-collapsed" href="/home" > {{ user.displayName }} </a>
+                            
                             
                         </div>
                     </a>
+                    <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="menu-collapsed" href="/home"  > {{ user.uid }} </span>
+                        </div>
+                        </a>
 
                 </div>
                   <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed" >

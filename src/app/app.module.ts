@@ -13,7 +13,7 @@ import { RouterModule,Routes} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage'
 import { AuthService } from './services/auth.service' ; 
-
+import { StarService } from './services/star.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/database';
 import {  FormsModule,ReactiveFormsModule} from '@angular/forms';
@@ -60,10 +60,6 @@ imports: [
   FormsModule,
   ReactiveFormsModule,
   BrowserAnimationsModule,
-  
- 
-
-
 
 ],
 providers: [],

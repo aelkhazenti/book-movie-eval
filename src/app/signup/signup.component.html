@@ -76,19 +76,19 @@
               <div [hidden]="!passwordConfirmationFailed" class="alert alert-danger">Password did not match</div>
               
               <button type="button"  class="pure-button pure-button-primary" 
-              style="margin-left: 15%; width: 25%;  background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
+              style="margin-left: 5%; width: 25%;  background: linear-gradient(90deg, #4D9FFF 0%, rgba(255, 255, 255, 0) 70.12%), #6DD3FF;
               border-radius: 50px; " 
               (click)="registerEmail()" >  register</button>
 
 
-
-              <!-- (click)="auth.loginWithemail(email,mdp)" -->
-
-
-              <button type="button"  class="pure-button pure-button-primary text-info" (click)="register()" style=" margin-left: 25%;  width: 30%; background: #FFFFFF;
+              <button type="button"  class="pure-button pure-button-primary text-info" (click)="loginGoogle()" style=" margin-left: 5%;  width: 30%; background: #FFFFFF;
               border: 1px solid #60C6FF;
               box-sizing: border-box;
-              border-radius: 50px; text-decoration-color: black ; " > <img src="../../assets/google-brands.svg"  style="width: 30px;" >  register whith google</button>
+              border-radius: 50px; text-decoration-color: black ; " > <img src="../../assets/google-brands.svg"  style="width: 30px;" >  register with google</button>
+
+              <button type="button"  class="pure-button pure-button-primary text-info"  style=" margin-left: 5%;  width: 30%; background: rgba(12, 156, 240, 0.486);
+              border: 1px solid #60C6FF; box-sizing: border-box;border-radius: 50px;"  (click)="facebookSignin()"> <img src="../../assets/facebook-brands (1).svg"  style="width: 20px;" > register with facebook </button>
+
             </div>
             
         </form>

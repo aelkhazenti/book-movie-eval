@@ -265,6 +265,7 @@ Swal.fire({
   timer: 1500
 })
   
+this.router.navigate(['/'])
 
   }
 

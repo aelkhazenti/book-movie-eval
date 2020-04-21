@@ -35,5 +35,9 @@ loginGoogle(){
  this.router.navigate(['/'])
 }
 
+facebookSignin(){
+  this.auth.facebookSignin()
+  this.router.navigate(['/'])
+}
 
 }
