@@ -80,7 +80,12 @@ console.log(this.itemArraLivre)
   var keymovi=item.$key
   console.log(keymovi)
     if(userId==null){
-alert("vous devez connecter ")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'vous devez connecter pour voter',
+        footer: '<a href="/signup"> go to register page  </a>'
+      })
     }else{
       console.log(userId)
       const star: Star ={ userId, movieId, value }
