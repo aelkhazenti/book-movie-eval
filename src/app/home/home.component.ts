@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
   itemFilme :AngularFireList<any>; 
   itemLivre :AngularFireList<any>; 
   itemArraLivre=[]
-  itemList :AngularFireList<any>;
-readonlyforme = false;
+  
+  readonlyforme = false;
   
   readonly = true;
   
@@ -39,7 +39,7 @@ readonlyforme = false;
     
     this.itemFilme = db.list('filme')
     this.itemLivre = db.list('livre')
-    this.itemList = db.list('stars')
+    
     this.itemArra=[]
       
         this.itemFilme = this.db.list('/filme')
@@ -90,11 +90,8 @@ console.log(this.itemArraLivre)
       console.log(userId)
       const star: Star ={ userId, movieId, value }
 
-      // Custom doc ID for relationship
-      const starPath = `stars/${star.userId}/${keymovi}`;
-  
       const pathst = star.userId+'/'+keymovi
-      // Set the data, return the promise
+      
       return this.afs.doc(pathst).set(star)
 
 

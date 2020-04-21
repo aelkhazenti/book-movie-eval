@@ -8,17 +8,17 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#">Hidden brand</a>
+      <a class="navbar-brand" href="#">book and film</a>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
           <a class="nav-link text-primary" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="additem">add item</a>
+          <a class="nav-link text-primary" href="additem">add item</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " href="/login">Disabled</a>
-        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link text-primary" href="/login">Disabled</a>
+        </li> -->
       </ul>
       
       <form class="form-inline mt-2 mt-md-0" >
@@ -53,11 +53,11 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <a class="nav-link text-primary" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="additem">add item</a>
+          <a class="nav-link text-primary" href="additem">add item</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " href="#">Disabled</a>
-        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link text-primary" href="#">Disabled</a>
+        </li> -->
       </ul>
         <div *ngIf="auth.user$ | async as user">
           <form class="form-inline mt-2 mt-md-0" >
