@@ -24,7 +24,6 @@ type :String
     model: NgbDateStruct;
     
 
-
   constructor(public router:Router,public auth : AuthService ) { 
     
   
