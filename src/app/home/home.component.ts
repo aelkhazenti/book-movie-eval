@@ -10,23 +10,25 @@ import {Router} from '@angular/router'
 import { Observable} from 'rxjs';
 import {finalize, tap}from 'rxjs/operators'
 import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  
   
 })
 export class HomeComponent implements OnInit {
-  
+
   stars : Observable<any>
   avgRating:Observable<any>
   note=0;
 
   itemFilme :AngularFireList<any>; 
   itemLivre :AngularFireList<any>; 
+  itemwithuser :AngularFireList<any>;
   itemArraLivre=[]
   
   readonlyforme = false;
@@ -34,7 +36,12 @@ export class HomeComponent implements OnInit {
   readonly = true;
   
   itemArra=[]
-
+  
+  userDoc: AngularFirestoreDocument<any>;
+  movieDoc: AngularFirestoreDocument<any>;
+  
+  user: Observable<any>;
+  movie: Observable<any>;
 
  
    constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router,private afs: AngularFirestore,public auth : AuthService,) { 
@@ -76,11 +83,9 @@ console.log(this.itemArraLivre)
 
   votre_Vote(item){
 
-   var userId:String  = localStorage.getItem("uiduser")
+   const userId:String  = localStorage.getItem("uiduser")
    var movieId = item;
    var value = item.note
-
- 
 
   var keymovi=item.$key
   console.log(keymovi)
@@ -94,98 +99,36 @@ console.log(this.itemArraLivre)
     }
     
     else{
-      if(value==1){
-        const star: Star ={ 
-          userId, 
-          movieId, 
-          value,
-          votepar_1:1,
-          votepar_2:0,
-          votepar_3:0,
-          votepar_4:0,
-          votepar_5:0
-        }
-        const pathst = star.userId+'/'+keymovi
-      
-      return this.afs.doc(pathst).set(star)
-      }else if(value==2){
-        const star: Star ={ 
-          userId, 
-          movieId, 
-          value,
-          votepar_1:0,
-          votepar_2:1,
-          votepar_3:0,
-          votepar_4:0,
-          votepar_5:0
-        }
-        const pathst = star.userId+'/'+keymovi
-      
-      return this.afs.doc(pathst).set(star)
-      }else if(value==3){
-        const star: Star ={ 
-          userId, 
-          movieId, 
-          value,
-          votepar_1:0,
-          votepar_2:0,
-          votepar_3:1,
-          votepar_4:0,
-          votepar_5:0
-        }
-        const pathst = star.userId+'/'+keymovi
-      
-      return this.afs.doc(pathst).set(star)
-      }else if(value==4){
-        const star: Star ={ 
-          userId, 
-          movieId, 
-          value,
-          votepar_1:0,
-          votepar_2:0,
-          votepar_3:0,
-          votepar_4:1,
-          votepar_5:0
-        }
-        const pathst = star.userId+'/'+keymovi
-      
-      return this.afs.doc(pathst).set(star)
-      }else if(value==5){
-        const star: Star ={ 
-          userId, 
-          movieId, 
-          value,
-          votepar_1:0,
-          votepar_2:0,
-          votepar_3:0,
-          votepar_4:0,
-          votepar_5:1
-        }
-        const pathst = star.userId+'/'+keymovi
-      
-      return this.afs.doc(pathst).set(star)
-      }else{
-        console.log(value)
-      }
-
 
       console.log(userId)
 
+      const star: Star ={ 
+        userId, 
+        movieId, 
+        value
+      }
 
-      
+      const pathst = star.userId+'/'+keymovi
+
+
+      return this.afs.doc(pathst).set(star)
 
 
     }
  
 
   }
-
+  
 
 
 
   ngOnInit() {
 
   }
+
+
+    
+
 
 }
 
@@ -227,9 +170,5 @@ export interface Star {
   userId: String;
   movieId: any;
   value: number;
-  votepar_1:number;
-  votepar_2:number;
-  votepar_3:number;
-  votepar_4:number;
-  votepar_5:number;
+
 }
