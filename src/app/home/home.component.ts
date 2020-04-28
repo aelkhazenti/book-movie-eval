@@ -6,11 +6,13 @@ import {NgbCalendar, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireStorage,AngularFireStorageReference,AngularFireUploadTask } from '@angular/fire/storage'
 import {AngularFireList,AngularFireDatabase} from '@angular/fire/database'
 
+import {StarService} from '../services/star.service'
+
 import {Router} from '@angular/router'
 import { Observable} from 'rxjs';
 import {finalize, tap}from 'rxjs/operators'
 import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument,AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -26,9 +28,12 @@ export class HomeComponent implements OnInit {
   avgRating:Observable<any>
   note=0;
 
+
+
+
   itemFilme :AngularFireList<any>; 
   itemLivre :AngularFireList<any>; 
-  itemwithuser :AngularFireList<any>;
+
   itemArraLivre=[]
   
   readonlyforme = false;
@@ -37,14 +42,13 @@ export class HomeComponent implements OnInit {
   
   itemArra=[]
   
-  userDoc: AngularFirestoreDocument<any>;
-  movieDoc: AngularFirestoreDocument<any>;
-  
+ objectItem:Star[];
+
   user: Observable<any>;
   movie: Observable<any>;
 
  
-   constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router,private afs: AngularFirestore,public auth : AuthService,) { 
+   constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router,private afs: AngularFirestore,public auth : AuthService,public starserv:StarService ) { 
     
     
     this.itemFilme = db.list('filme')
@@ -86,9 +90,25 @@ console.log(this.itemArraLivre)
    const userId:String  = localStorage.getItem("uiduser")
    var movieId = item;
    var value = item.note
+   var keymovi=item.$key
+    
 
-  var keymovi=item.$key
-  console.log(keymovi)
+
+   this.starserv.getItem(item).subscribe(items =>{
+    
+    if(items.value == 2 ){
+      alert("aaaaaa")
+    }
+    this.objectItem = items;
+    
+   
+  })
+
+ 
+
+  
+  
+
     if(userId==null){
       Swal.fire({
         icon: 'error',
@@ -96,8 +116,7 @@ console.log(this.itemArraLivre)
         text: 'vous devez connecter pour voter',
         footer: '<a href="/signup"> go to register page  </a>'
       })
-    }
-    
+    }  
     else{
 
       console.log(userId)
@@ -109,11 +128,9 @@ console.log(this.itemArraLivre)
       }
 
       const pathst = star.userId+'/'+keymovi
+      this.afs.doc(pathst).set(star)
 
-
-      return this.afs.doc(pathst).set(star)
-
-
+      
     }
  
 

@@ -1,36 +1,39 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs'
 
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class StarService {
 
-itemcollection : AngularFirestoreCollection<Item>
-item : Observable<Item[]>
 
-  constructor(private afs: AngularFirestore) {     
-    
-  }
+  itemCollection : AngularFirestoreCollection<Star>;
+  item:Observable<any>;
+  
+  constructor(public afs :AngularFirestore) { }
 
 
-  getitems(item){
-    const userId:String  = localStorage.getItem("uiduser")
-    var keymovi=item.$key
+  getItem(item){
+    this.item = null
+    const userId:String  = localStorage.getItem("uiduser");
+    var keymovi=item.$key;
+    console.log(userId)
     const pathst = userId+'/'+keymovi
-    
+
+
+    this.item = this.afs.doc(pathst).valueChanges();
 
     return this.item;
   }
 
 
-}
-export interface Item { 
-  uid : String,
-  email : String,
-  displayName?: String,
-  photoURL?: String,
-  nom?:String,
-  prenom?:String,
+
 }
 
+export interface Star {
+  userId: String;
+  movieId: any;
+  value: number;
+
+}
