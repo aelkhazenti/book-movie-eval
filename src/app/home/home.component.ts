@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   
   itemArra=[]
   
- objectItem:Star[];
+ objectItem:number
 
   user: Observable<any>;
   movie: Observable<any>;
@@ -95,19 +95,35 @@ console.log(this.itemArraLivre)
 
 
    this.starserv.getItem(item).subscribe(items =>{
-    
-    if(items.value == 2 ){
-      alert("aaaaaa")
-    }
-    this.objectItem = items;
-    
-   
+    this.objectItem = items.value;
+   console.log(typeof(items))
+    console.log(this.objectItem)
+    console.log(item.note)
   })
 
  
+this.itemFilme.set(keymovi,{
 
-  
-  
+  nomfilme : item.nomfilme,
+  categorie : item.categorie,
+  datesortie : item.datesortie,
+  director : item.director,
+  durefilm : item.durefilm,
+  type : item.type,
+  urlimage : item.urlimage, 
+  note: item.note,
+  nbrvote: 0 ,   
+
+  noteGenerale : 0,
+
+  vote1star :0,
+  vote2star :0,
+  vote3star :0,
+  vote4star :0,
+  vote5star :0,
+})
+this.itemArra=[]
+
 
     if(userId==null){
       Swal.fire({
@@ -117,7 +133,7 @@ console.log(this.itemArraLivre)
         footer: '<a href="/signup"> go to register page  </a>'
       })
     }  
-    else{
+    else if(item.note == this.objectItem) {
 
       console.log(userId)
 
@@ -128,9 +144,14 @@ console.log(this.itemArraLivre)
       }
 
       const pathst = star.userId+'/'+keymovi
+      
+      
       this.afs.doc(pathst).set(star)
 
       
+    
+
+
     }
  
 
