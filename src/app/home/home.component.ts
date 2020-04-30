@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   itemFilme :AngularFireList<any>; 
   itemLivre :AngularFireList<any>; 
 
+  itemFilme2 :AngularFireList<any>; 
   itemArraLivre=[]
   
   readonlyforme = false;
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit {
   readonly = true;
   
   itemArra=[]
-  
+  itemArra2=[]
  objectItem:number
 
   user: Observable<any>;
@@ -65,6 +66,7 @@ export class HomeComponent implements OnInit {
             this.itemArra.push(y as listfilm ) 
           })
         })
+
         console.log(this.itemArra)
         this.itemArraLivre=[]
 this.itemLivre = this.db.list('/livre')
@@ -94,35 +96,23 @@ console.log(this.itemArraLivre)
     
 
 
-   this.starserv.getItem(item).subscribe(items =>{
-    this.objectItem = items.value;
-   console.log(typeof(items))
-    console.log(this.objectItem)
-    console.log(item.note)
-  })
+  //  this.starserv.getItem(item).subscribe(items =>{
+    
+  //    if(items==null){
+  //       console.log("null")
+  //    }
+  //    else{
+  //   this.objectItem = items.value;
+  //    }
+  // })
 
- 
-this.itemFilme.set(keymovi,{
+  console.log("user"+this.objectItem)
+  console.log("database"+item.note)
 
-  nomfilme : item.nomfilme,
-  categorie : item.categorie,
-  datesortie : item.datesortie,
-  director : item.director,
-  durefilm : item.durefilm,
-  type : item.type,
-  urlimage : item.urlimage, 
-  note: item.note,
-  nbrvote: 0 ,   
+this.calculrating(item)
 
-  noteGenerale : 0,
 
-  vote1star :0,
-  vote2star :0,
-  vote3star :0,
-  vote4star :0,
-  vote5star :0,
-})
-this.itemArra=[]
+
 
 
     if(userId==null){
@@ -133,9 +123,26 @@ this.itemArra=[]
         footer: '<a href="/signup"> go to register page  </a>'
       })
     }  
-    else if(item.note == this.objectItem) {
+    else  {
 
-      console.log(userId)
+      // console.log(userId)
+
+      var numerateur =  (item.vote1star * 1) + (item.vote2star * 2) +(item.vote3star * 3) + (item.vote4star * 4) + (item.vote5star * 5)
+var denominateur = item.vote1star+item.vote2star+item.vote3star+item.vote4star+item.vote5star
+var result = numerateur/denominateur
+if (item.noteGenerale == 0){
+  this.itemFilme.update(keymovi,{
+    noteGenerale: numerateur,
+    nbrvote: denominateur
+  })
+}else{
+
+this.itemFilme.update(keymovi,{
+  noteGenerale: result,
+  nbrvote: denominateur
+})
+}
+
 
       const star: Star ={ 
         userId, 
@@ -148,16 +155,34 @@ this.itemArra=[]
       
       this.afs.doc(pathst).set(star)
 
-      
-    
-
-
     }
  
 
+    
   }
   
+getRating(item){
+  const userId:String  = localStorage.getItem("uiduser")
+  var movieId = item;
+  var value = item.note
+  var keymovi=item.$key  
+  this.starserv.getItem(item).subscribe(items =>{  
+    if(items==null){
+       console.log("not login")
+       const star: Star ={ 
+        userId, 
+        movieId, 
+        value
+      }
+      const pathst = star.userId+'/'+keymovi
+      this.afs.doc(pathst).set(star)
+    }
+    else{
+   this.objectItem = items.value;
+    }
+ })
 
+}
 
 
   ngOnInit() {
@@ -165,8 +190,95 @@ this.itemArra=[]
   }
 
 
-    
+  modif(item){var keymovi=item.$key
+    this.itemFilme.set(keymovi,{
 
+      nomfilme : item.nomfilme,
+      categorie : item.categorie,
+      datesortie : item.datesortie,
+      director : item.director,
+      durefilm : item.durefilm,
+      type : item.type,
+      urlimage : item.urlimage, 
+      note: item.note,
+      nbrvote: 0 ,   
+    
+      noteGenerale : 0,
+    
+      vote1star :0,
+      vote2star :0,
+      vote3star :0,
+      vote4star :0,
+      vote5star :0,
+    })
+    this.itemArra=[]
+  }
+
+  calculrating(item){
+    var keymovi=item.$key
+
+    if(this.objectItem == item.note){
+
+    }else if (item.note == 1){
+      this.itemFilme.update(keymovi,{
+        vote1star: item.vote1star + 1
+      })
+    }else if (item.note == 2){
+      this.itemFilme.update(keymovi,{
+        vote2star: item.vote2star + 1
+      })
+    }else if (item.note == 3){
+      this.itemFilme.update(keymovi,{
+        vote3star: item.vote3star + 1
+      })
+    }else if (item.note == 4){
+      this.itemFilme.update(keymovi,{
+        vote4star: item.vote4star + 1
+      })
+    }else if (item.note == 5){
+      this.itemFilme.update(keymovi,{
+        vote5star: item.vote5star + 1
+      })
+    }
+    
+    
+    if(this.objectItem == item.note){
+    
+    }else if (this.objectItem == 1){
+      this.itemFilme.update(keymovi,{
+        vote1star: item.vote1star - 1
+      })
+    }else if (this.objectItem == 2){
+      this.itemFilme.update(keymovi,{
+        vote2star: item.vote2star - 1
+      })
+    }else if (this.objectItem == 3){
+      this.itemFilme.update(keymovi,{
+        vote3star: item.vote3star - 1
+      })
+    }else if (this.objectItem == 4){
+      this.itemFilme.update(keymovi,{
+        vote4star: item.vote4star - 1
+      })
+    }else if (this.objectItem == 5){
+      this.itemFilme.update(keymovi,{
+        vote5star: item.vote5star - 1
+      })
+    }
+    this.itemArra=[]
+
+    this.itemFilme.snapshotChanges().subscribe(actions=>{
+      actions.forEach(Action=>{
+       let y=  Action.payload.toJSON()
+        y['$key']= Action.key
+        this.itemArra.push(y as listfilm ) 
+      })
+    })
+
+    
+  }
+  
+  
 
 }
 
@@ -210,3 +322,8 @@ export interface Star {
   value: number;
 
 }
+
+
+
+ 
+

@@ -15,7 +15,7 @@ export class StarService {
 
 
   getItem(item){
-    this.item = null
+    
     const userId:String  = localStorage.getItem("uiduser");
     var keymovi=item.$key;
     console.log(userId)

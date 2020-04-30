@@ -34,9 +34,9 @@
                   <p class="card-text">categorie : <strong>{{item.categorie}} </strong>  </p>
                 </div>
                 <div class="card-footer">
-                  <small class="text-muted"> votre vote : <ngb-rating [(rate)]="item.note" [readonly]="readonlyforme"  [max]="5" ></ngb-rating > <button (click)="votre_Vote(item)">submit</button> </small> 
+                  <small class="text-muted"> votre vote : <ngb-rating [(rate)]="item.note" [readonly]="readonlyforme"  [max]="5" (click)="getRating(item)" ></ngb-rating > <button (click)="votre_Vote(item)"(dblclick) ="votre_Vote(item)" >submit</button> </small> 
                   <br>
-                  <small class="text-muted"><ngb-rating [(rate)]="item.noteGenerale"  [readonly]="readonly"  [max]="5"></ngb-rating></small><small > {{item.noteGenerale}} /5  prsonne vote : {{item.nbrvote}} </small>
+                  <small class="text-muted"><ngb-rating [(rate)]="item.noteGenerale"  [readonly]="readonly"  [max]="5"  ></ngb-rating></small><small > {{item.noteGenerale}} /5  prsonne vote : {{item.nbrvote}} </small>
                   <!-- <button (click)="keydevote(item.$key)">vo</button> -->
                 </div>
               
