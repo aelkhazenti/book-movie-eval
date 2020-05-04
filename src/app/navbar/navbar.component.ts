@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
     this.modalService.open(content,  { size: 'xl' });
   }
 
-  ajoute(user){
+  ajoute(user,allUsers){
 
     var userIMG =user.photoURL ;
     var userUID =user.uid ;
@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
     var invitation = "true";
     var userEMAIL = user.email;
 
-    const pathInvitation = user.uid+"/invitation/"
+    const pathInvitation = allUsers.uid+"/amis/invitation/"+user.uid
 
     const invit :invitation={
       userIMG ,
@@ -52,11 +52,12 @@ export class NavbarComponent implements OnInit {
     userEMAIL
     }
 
-
     // this.afs.doc(pathInvitation).set(invit);
 
-    this.afs.collection(pathInvitation).add(invit)
+    this.afs.doc(pathInvitation).set(invit)
     console.log(pathInvitation);
+
+    // console.log(allUsers.uid+"/amis/invitation"+user.uid)
   }
 
 }
