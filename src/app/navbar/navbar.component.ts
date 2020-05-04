@@ -15,15 +15,29 @@ import { Observable } from 'rxjs';
 export class NavbarComponent implements OnInit {
 
   users :Observable<any[]>
+  listInvit :Observable<any[]>
 
   constructor( public auth : AuthService ,config: NgbModalConfig, private modalService: NgbModal ,public afs:AngularFirestore ) { 
     config.backdrop = 'static';
     config.keyboard = false;
 
-
     this.users = this.afs.collection('users').valueChanges();
-    console.log(this.users)
 
+    const useruid = localStorage.getItem('uiduser')
+
+if(useruid==null){
+
+}else{
+    var path = useruid+"/amis/invitation"
+    
+    
+    this.listInvit = this.afs.collection(path).valueChanges()
+
+    
+    
+
+
+}
   }
 
   ngOnInit() {
@@ -32,6 +46,26 @@ export class NavbarComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content,  { size: 'xl' });
+  }
+
+  openIvite(Invitation){
+    this.modalService.open(Invitation,{size :'xl'})
+
+    
+    const useruid = localStorage.getItem('uiduser')
+
+    var path = useruid+"/amis/invitation"
+    
+    
+    this.listInvit = this.afs.collection(path).valueChanges()
+
+    var ll = this.listInvit.forEach.length.toString()
+    console.log("hello "+ll)
+
+  }
+
+  accepteAmis(){
+
   }
 
   ajoute(user,allUsers){
@@ -59,6 +93,7 @@ export class NavbarComponent implements OnInit {
 
     // console.log(allUsers.uid+"/amis/invitation"+user.uid)
   }
+ 
 
 }
 
