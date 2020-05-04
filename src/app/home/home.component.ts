@@ -7,6 +7,7 @@ import {AngularFireStorage,AngularFireStorageReference,AngularFireUploadTask } f
 import {AngularFireList,AngularFireDatabase} from '@angular/fire/database'
 
 import {StarService} from '../services/star.service'
+import {SercheService} from '../services/serche.service'
 
 import {Router} from '@angular/router'
 import { Observable} from 'rxjs';
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
   movie: Observable<any>;
 
  
-   constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router,private afs: AngularFirestore,public auth : AuthService,public starserv:StarService ) { 
+   constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router,private afs: AngularFirestore,public auth : AuthService,public starserv:StarService,public serc :SercheService ) { 
     
     
     this.itemFilme = db.list('filme')
@@ -81,7 +82,7 @@ this.itemLivre.snapshotChanges().subscribe(actions=>{
 })
 console.log(this.itemArraLivre)
 
-
+// this.serc.getmovie()
 
 
   }
@@ -166,6 +167,7 @@ getRating(item){
   var movieId = item;
   var value = item.note
   var keymovi=item.$key  
+  
   this.starserv.getItem(item).subscribe(items =>{  
     if(items==null){
        console.log("not login")
