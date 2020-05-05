@@ -84,7 +84,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
               </svg>
               <span class="badge badge-pill badge-success ml-2">{{(listInvit | async)?.length}}</span>
           </a> 
-          <a class="text-white nav-link "  >
+          <a class="text-white "  >
             | 
           </a>
           <a class="text-white nav-link"  >
@@ -103,9 +103,10 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
 </g>
 </svg>
         </a> 
-                  <a class="text-white nav-link "  >
+                  <a class="text-white" >
                       |
                   </a> 
+                
                   <div ngbDropdown>
                     <div class="nav-item" ngbDropdown>
                       <a class="text-black nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown2" role="button">
@@ -171,6 +172,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
     </button>
   </div>
   <div class="modal-body">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="username"  (input)="search()" >
     <table class="table">
       <thead>
         <tr>
@@ -184,15 +186,15 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       </thead>
       
       <tbody>
-        Length: {{(listInvit | async)?.length}}
+        <!-- Length: {{(listInvit | async)?.length}} -->
         
-        <tr *ngFor="let users of listInvit | async " >
+        <tr *ngFor="let users of datauserInvit" >
           
           <td  > <img [src]="users.userIMG" alt="Avatar" style="width: 40px;border-radius: 50%;" ></td>
-          <td > {{users.length}} </td>
+          <td > {{users.userName}} </td>
           <td >{{users.userEMAIL }}</td>
           <td >{{users.userUID }}</td>
-          <td ><button type="button" class="btn btn-primary" (click)="addToFriends()" >ajouter</button> </td>
+          <td ><button type="button" class="btn btn-primary" (click)="addToFriends(users)" >ajouter</button> </td>
           <td ><button type="button" class="btn btn-primary" >delt</button> </td>
         </tr>
 

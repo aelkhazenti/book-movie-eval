@@ -4,6 +4,8 @@ import { User } from '../services/user.model';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFirestore, AngularFirestoreDocument  } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { query } from '@angular/animations';
 
 
 @Component({
@@ -13,6 +15,11 @@ import { Observable } from 'rxjs';
   providers: [NgbModalConfig, NgbModal]
 })
 export class NavbarComponent implements OnInit {
+
+  userinvit : invitation[] = []
+  username:String="";
+
+datauserInvit = []
 
   users :Observable<any[]>
   listInvit :Observable<any[]>
@@ -35,12 +42,14 @@ if(useruid==null){
 
     
     
+    
 
 
 }
   }
 
   ngOnInit() {
+
   }
 
 
@@ -59,14 +68,42 @@ if(useruid==null){
     
     this.listInvit = this.afs.collection(path).valueChanges()
 
-    var ll = this.listInvit.forEach.length.toString()
-    console.log("hello "+ll)
+    this.listInvit.subscribe(res=>{
+      this.datauserInvit = res
+    })
+    
+  }
+
+  addToFriends(users){
+
+
 
   }
 
-  accepteAmis(){
+search(){
+  console.log(this.datauserInvit)
 
+  if(this.username == ""){
+    const useruid = localStorage.getItem('uiduser')
+
+    var path = useruid+"/amis/invitation"
+    
+    
+    this.listInvit = this.afs.collection(path).valueChanges()
+
+    this.listInvit.subscribe(res=>{
+      this.datauserInvit = res
+    })
+    console.log("vide")
   }
+  else{
+ this.datauserInvit =  this.datauserInvit.filter(res=>{
+
+  return res.userName.toLowerCase().match(this.username.toLowerCase())
+})
+  }
+}
+
 
   ajoute(user,allUsers){
 
