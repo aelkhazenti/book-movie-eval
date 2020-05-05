@@ -22,6 +22,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -43,6 +44,7 @@ const routes:Routes =[
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
+    FooterComponent,
   
   ],
 

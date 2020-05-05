@@ -46,6 +46,8 @@ export class HomeComponent implements OnInit {
   itemArra2=[]
  objectItem:number
 
+listedesAmies:Observable<any[]>
+
   user: Observable<any>;
   movie: Observable<any>;
 
@@ -82,7 +84,12 @@ this.itemLivre.snapshotChanges().subscribe(actions=>{
 })
 console.log(this.itemArraLivre)
 
-// this.serc.getmovie()
+
+const useruid = localStorage.getItem('uiduser')
+
+var path = useruid+"/amis/accepted"
+
+ this.listedesAmies = this.afs.collection(path).valueChanges()
 
 
   }
@@ -167,7 +174,7 @@ getRating(item){
   var movieId = item;
   var value = item.note
   var keymovi=item.$key  
-  
+
   this.starserv.getItem(item).subscribe(items =>{  
     if(items==null){
        console.log("not login")
@@ -281,6 +288,11 @@ getRating(item){
   }
   
   
+  partageWhithFriends(item){
+    console.log("adadada")
+  }
+
+
 
 }
 
