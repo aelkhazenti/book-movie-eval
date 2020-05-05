@@ -172,7 +172,13 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
     </button>
   </div>
   <div class="modal-body">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="username"  (input)="search()" >
+    
+    <div class="input-group mb-3" style="margin-left: 40%;" >
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
+      <input type="text" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="username"  (input)="search()" >
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -194,8 +200,8 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <td > {{users.userName}} </td>
           <td >{{users.userEMAIL }}</td>
           <td >{{users.userUID }}</td>
-          <td ><button type="button" class="btn btn-primary" (click)="addToFriends(users)" >ajouter</button> </td>
-          <td ><button type="button" class="btn btn-primary" >delt</button> </td>
+          <td ><button type="button" class="btn btn-success" (click)="addToFriends(users)" >ajouter</button> </td>
+          <td ><button type="button" class="btn btn-danger" (click)="DeltFriends(users)">delt</button> </td>
         </tr>
 
       </tbody>
@@ -216,6 +222,14 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
     </button>
   </div>
   <div class="modal-body">
+
+    <div class="input-group mb-3" style="margin-left: 40%;" >
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
+      <input type="text" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" [(ngModel)]="username"  (input)="searchNewFr()" >
+    </div>
+
     <table class="table">
       <thead>
         <tr>
@@ -228,7 +242,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       </thead>
       
       <tbody>
-        <tr *ngFor="let allUsers of users | async " >
+        <tr *ngFor="let allUsers of newfriendsINvite " >
           
           <td *ngIf="user.uid != allUsers.uid"  > <img [src]="allUsers.photoURL" alt="Avatar" style="width: 40px;border-radius: 50%;" ></td>
           <td *ngIf="user.uid != allUsers.uid"> {{allUsers.displayName}} </td>

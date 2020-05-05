@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreDocument  } from '@angular/fire/fires
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { query } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -20,9 +21,13 @@ export class NavbarComponent implements OnInit {
   username:String="";
 
 datauserInvit = []
+newfriendsINvite =[]
 
   users :Observable<any[]>
   listInvit :Observable<any[]>
+
+  listOfFriends:Observable<any[]>
+  arrayOfFriends =[]
 
   constructor( public auth : AuthService ,config: NgbModalConfig, private modalService: NgbModal ,public afs:AngularFirestore ) { 
     config.backdrop = 'static';
@@ -30,6 +35,10 @@ datauserInvit = []
 
     this.users = this.afs.collection('users').valueChanges();
 
+    this.users.subscribe(res=>{
+      this.newfriendsINvite = res
+    })
+    
     const useruid = localStorage.getItem('uiduser')
 
 if(useruid==null){
@@ -49,7 +58,6 @@ if(useruid==null){
   }
 
   ngOnInit() {
-
   }
 
 
@@ -75,9 +83,67 @@ if(useruid==null){
   }
 
   addToFriends(users){
+    const useruid = localStorage.getItem('uiduser')
+
+    var path = useruid+"/amis/accepted/"+users.userUID
+
+    const userIMG = users.userIMG
+    const userName = users.userName
+    const userEMAIL = users.userEMAIL
+    const userUID = users.userUID
+    const invitation = "false"
+
+    const amis :invitation={
+  
+      userIMG ,
+      userUID ,
+      userName ,
+     invitation,
+     userEMAIL 
+    }
+
+  this.afs.doc(path).set(amis)
+    
+
+    var pathDelt = useruid+"/amis/invitation/"+users.userUID
+    // this.afs.doc(pathDelt).delete()
+
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'vous avez amis avec '+users.userName,
+      showConfirmButton: false,
+      timer: 1500
+    })
+
+  }
+
+  DeltFriends(users){
+    const useruid = localStorage.getItem('uiduser')
+    var path = useruid+"/amis/invitation/"+users.userUID
+    this.afs.doc(path).delete()
+
+  }
 
 
+  searchNewFr(){
+    if(this.username == ""){
 
+      this.users = this.afs.collection('users').valueChanges();
+
+      this.users.subscribe(res=>{
+        this.newfriendsINvite = res
+      })
+    }
+
+    else{
+      console.log(this.newfriendsINvite)
+   this.newfriendsINvite =  this.newfriendsINvite.filter(res=>{
+  
+    return res.displayName.toLowerCase().match(this.username.toLowerCase())
+  })
+    }
+  
   }
 
 search(){
@@ -94,7 +160,6 @@ search(){
     this.listInvit.subscribe(res=>{
       this.datauserInvit = res
     })
-    console.log("vide")
   }
   else{
  this.datauserInvit =  this.datauserInvit.filter(res=>{
@@ -123,12 +188,8 @@ search(){
     userEMAIL
     }
 
-    // this.afs.doc(pathInvitation).set(invit);
-
     this.afs.doc(pathInvitation).set(invit)
-    console.log(pathInvitation);
-
-    // console.log(allUsers.uid+"/amis/invitation"+user.uid)
+    
   }
  
 
