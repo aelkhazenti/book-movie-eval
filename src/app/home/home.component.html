@@ -82,11 +82,11 @@
 
     </div>
 </div>
-<div style="position: fixed;right: 0;bottom: 0; padding-right: 10%; ">
+<div style="position: fixed;right: 0;bottom: 0; padding-right: 7%; ">
 
   <div ngbDropdown placement="top-right" class="d-inline-block" style="width: 135%;" >
-    <button class="btn btn-primary" id="dropdownBasic2" style="width: 135%;" ngbDropdownToggle>liste des amies</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+    <button class="btn btn-info" id="dropdownBasic2" style="width: 135%;" ngbDropdownToggle>liste des amies <span class="badge badge-pill badge-success ml-2">{{(listedesAmies | async)?.length}}</span> </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic2" style="width: 135%;" >
       <button ngbDropdownItem *ngFor="let item of listedesAmies | async " style="background-color:azure; width: 260px; " ><img [src]="item.userIMG" style="width: 2em;border-radius: 50%;" >   {{item.userName}} </button>
    
     </div>

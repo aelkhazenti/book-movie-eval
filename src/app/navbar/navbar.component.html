@@ -163,8 +163,9 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
 
 
 
+
 <ng-template #Invitation let-c="close" let-d="dismiss">
-  
+  <div *ngIf="auth.user$ | async as user">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title"> ajouter un amis </h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -200,7 +201,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <td > {{users.userName}} </td>
           <td >{{users.userEMAIL }}</td>
           <td >{{users.userUID }}</td>
-          <td ><button type="button" class="btn btn-success" (click)="addToFriends(users)" >ajouter</button> </td>
+          <td ><button type="button" class="btn btn-success" (click)="addToFriends(users,user)" >ajouter</button> </td>
           <td ><button type="button" class="btn btn-danger" (click)="DeltFriends(users)">delt</button> </td>
         </tr>
 
@@ -208,8 +209,10 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
       
     </table>
   </div>
-
+  </div>
 </ng-template>
+
+
 
 
 

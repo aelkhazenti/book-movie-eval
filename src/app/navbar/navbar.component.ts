@@ -82,27 +82,46 @@ if(useruid==null){
     
   }
 
-  addToFriends(users){
+  addToFriends(users,user){
     const useruid = localStorage.getItem('uiduser')
 
     var path = useruid+"/amis/accepted/"+users.userUID
+    var path2 = users.userUID+"/amis/accepted/"+useruid
 
-    const userIMG = users.userIMG
-    const userName = users.userName
-    const userEMAIL = users.userEMAIL
-    const userUID = users.userUID
-    const invitation = "false"
-
-    const amis :invitation={
-  
+    var userIMG = users.userIMG
+    var userName = users.userName
+    var userEMAIL = users.userEMAIL
+    var userUID = users.userUID
+    var invitation = "false"
+    
+    const amis :invitation={ 
       userIMG ,
       userUID ,
       userName ,
      invitation,
-     userEMAIL 
+     userEMAIL ,
+    
     }
 
-  this.afs.doc(path).set(amis)
+    this.afs.doc(path).set(amis)
+
+
+     userIMG = user.photoURL
+     userName = user.displayName
+     userEMAIL = user.email
+     userUID = user.uid
+    invitation = "false"
+
+    const amis2:invitation={
+      userIMG ,
+      userUID ,
+      userName ,
+     invitation,
+     userEMAIL    
+
+    }
+
+  this.afs.doc(path2).set(amis2)
     
 
     var pathDelt = useruid+"/amis/invitation/"+users.userUID
@@ -201,4 +220,5 @@ export interface invitation {
   userName:String;
   invitation:String;
   userEMAIL:String;
+  // date:Date
 }
