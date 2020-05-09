@@ -172,7 +172,7 @@ console.log("------")
     
 
     var pathDelt = useruid+"/amis/invitation/"+users.userUID
-    // this.afs.doc(pathDelt).delete()
+    this.afs.doc(pathDelt).delete()
 
     Swal.fire({
       position: 'top-end',
