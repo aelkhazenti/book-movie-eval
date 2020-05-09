@@ -26,6 +26,10 @@ newfriendsINvite =[]
   users :Observable<any[]>
   listInvit :Observable<any[]>
 
+  listedesAmies:Observable<any[]>
+  listedesAmiesArray =[]
+
+
   listOfFriends:Observable<any[]>
   arrayOfFriends =[]
 
@@ -38,19 +42,30 @@ newfriendsINvite =[]
     this.users.subscribe(res=>{
       this.newfriendsINvite = res
     })
+
+    
     
     const useruid = localStorage.getItem('uiduser')
 
 if(useruid==null){
 
 }else{
+
     var path = useruid+"/amis/invitation"
     
     
     this.listInvit = this.afs.collection(path).valueChanges()
 
     
-    
+    var path = useruid+"/amis/accepted"
+
+ this.listedesAmies = this.afs.collection(path).valueChanges()
+
+
+ this.listedesAmies.subscribe(res=>{
+   this.listedesAmiesArray = res
+ })
+ 
     
 
 
@@ -63,7 +78,39 @@ if(useruid==null){
 
   open(content) {
     this.modalService.open(content,  { size: 'xl' });
+
+ console.log(this.listedesAmiesArray)
+ 
+console.log("------")
+
+ for (var y=0 ; y <this.newfriendsINvite.length;y++){
+
+  
+  for(var i=0;i<this.listedesAmiesArray.length;i++){
+
+
+    
+
+    if(this.newfriendsINvite[y].uid === this.listedesAmiesArray[i].userUID){
+      console.log(y+this.newfriendsINvite[y].uid)
+        this.newfriendsINvite.splice(y,1)
+        
+    }
+
   }
+
+
+
+
+ }
+
+ console.log(this.newfriendsINvite)
+
+
+  }
+
+
+
 
   openIvite(Invitation){
     this.modalService.open(Invitation,{size :'xl'})
