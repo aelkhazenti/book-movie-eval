@@ -8,6 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -41,6 +42,13 @@ export class AuthService {
       const provider = new auth.FacebookAuthProvider
       
       const credential = await this.afAuth.signInWithPopup(provider);
+      Swal.fire({
+        icon: 'success',
+        title: 'welcome back',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
       return this.updateUserData(credential.user);
     }
 
@@ -49,6 +57,13 @@ export class AuthService {
       
       
       const credential = await this.afAuth.signInWithPopup(provider);
+      Swal.fire({
+        icon: 'success',
+        title: 'welcome back',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
       return this.updateUserData(credential.user);
     }
   
@@ -81,6 +96,13 @@ export class AuthService {
 
   const credential = await this.afAuth.signInWithEmailAndPassword(email,mdp)
   console.log(username+" "+imgURL)
+  Swal.fire({
+    icon: 'success',
+    title: 'welcome back',
+    showConfirmButton: false,
+    timer: 1500
+  })
+
   return this.updateUser(credential.user,username,imgURL)
   
 
@@ -112,6 +134,13 @@ export class AuthService {
 
       localStorage.setItem("uiduser",credential.user.uid)
       this.setuser(credential.user)
+      Swal.fire({
+        icon: 'success',
+        title: 'welcome back',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      
        this.router.navigate(['/'])
       
     }

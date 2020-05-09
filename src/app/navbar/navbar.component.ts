@@ -255,6 +255,12 @@ search(){
     }
 
     this.afs.doc(pathInvitation).set(invit)
+     Swal.fire({
+      icon: 'success',
+      title: 'votre invitation a ete envoyer a '+allUsers.displayName,
+      showConfirmButton: false,
+      timer: 1500
+    })
     
   }
  

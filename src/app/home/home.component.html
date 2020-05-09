@@ -82,6 +82,7 @@
 
     </div>
 </div>
+<div *ngIf="auth.user$ | async as user">
 <div style="position: fixed;right: 0;bottom: 0; padding-right: 7%; ">
 
   <div ngbDropdown placement="top-right" class="d-inline-block" style="width: 135%;" >
@@ -91,6 +92,7 @@
    
     </div>
   </div>
+</div>
 </div>
 <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.1/dist/css/uikit.min.css" />
