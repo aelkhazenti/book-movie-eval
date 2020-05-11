@@ -99,9 +99,6 @@ console.log("------")
 
   }
 
-
-
-
  }
 
  console.log(this.newfriendsINvite)

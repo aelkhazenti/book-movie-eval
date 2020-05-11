@@ -5,7 +5,7 @@ import Swal from "sweetalert2"
 import {NgbCalendar, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFireStorage,AngularFireStorageReference,AngularFireUploadTask } from '@angular/fire/storage'
 import {AngularFireList,AngularFireDatabase} from '@angular/fire/database'
-
+import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {StarService} from '../services/star.service'
 import {SercheService} from '../services/serche.service'
 
@@ -46,13 +46,18 @@ export class HomeComponent implements OnInit {
   itemArra2=[]
  objectItem:number
 
+
+itemShare :any
+
 listedesAmies:Observable<any[]>
 
   user: Observable<any>;
   movie: Observable<any>;
 
  
-   constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,public router:Router,private afs: AngularFirestore,public auth : AuthService,public starserv:StarService,public serc :SercheService ) { 
+   constructor(private afStorage: AngularFireStorage,public db:AngularFireDatabase,
+    public router:Router,private afs: AngularFirestore,public auth : AuthService,
+    public starserv:StarService,public serc :SercheService,private modalService: NgbModal ) { 
     
     
     this.itemFilme = db.list('filme')
@@ -288,10 +293,46 @@ getRating(item){
   }
   
   
-  partageWhithFriends(item){
-    console.log("adadada")
+  partageWhithFriends(content,item)  {
+    
+    this.modalService.open(content,{size : 'xl'});
+
+  this.itemShare = item;
+
+
+
   }
 
+sharwhithFR(item,user){
+  
+  // alert(user.displayName+"-----"+user.photoURL)
+
+  var nameItem = this.itemShare.nomfilme
+  var IMGItem =  this.itemShare.urlimage
+  var noteGenerale =  this.itemShare.noteGenerale
+  var typeItem = this.itemShare.type
+
+  var FriendsIMG = user.photoURL
+  var FriendsUsername = user.displayName 
+
+const frShare :itemShare={
+  nameItem,
+  IMGItem,
+  noteGenerale,
+  typeItem,
+
+  FriendsIMG,
+  FriendsUsername
+}
+
+
+const path = item.userUID+"/amis/messages/"
+
+this.afs.collection(path).add(frShare)
+
+console.log("work :) "+item.userUID)
+
+}
 
 
 }
@@ -338,6 +379,16 @@ export interface Star {
 }
 
 
+export interface itemShare {
 
+  nameItem : String;
+  IMGItem : String;
+  noteGenerale :String;
+  typeItem :String;
+
+  FriendsIMG:String;
+  FriendsUsername:String;
+
+}
  
 

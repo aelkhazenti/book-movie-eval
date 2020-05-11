@@ -65,6 +65,7 @@ data = {
     
     this.itemFilme = db.list('filme')
     this.itemLivre = db.list('livre')
+    
 
     this.itemArra=[]
    
