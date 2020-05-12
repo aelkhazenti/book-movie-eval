@@ -54,6 +54,10 @@
       <hr style="border: 2px solid #56CCFF;">
       <h3 style="text-align: center;" class="text-info" > Livre </h3>
         <hr style="border: 2px solid #56CCFF;">
+
+
+
+
       <div class="row">
         <tr *ngFor="let item of itemArraLivre" >
            <div style="margin: 15px;">
@@ -94,6 +98,8 @@
   </div>
 </div>
 </div>
+
+
 <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.4.1/dist/css/uikit.min.css" />
 
@@ -136,7 +142,7 @@
           
           <td   > <img [src]="item.userIMG" alt="Avatar" style="width: 40px;border-radius: 50%;" ></td>
           <td > {{item.userName}} </td>
-          <td > {{item.userUID}} </td>
+          <td > {{item.userEMAIL}} </td>
           
           <td ><button type="button" class="btn btn-primary" (click)="sharwhithFR(item,user)" >partager</button> </td>
         

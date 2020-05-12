@@ -25,10 +25,11 @@ newfriendsINvite =[]
 
   users :Observable<any[]>
   listInvit :Observable<any[]>
+  listMessage :Observable<any[]>
 
   listedesAmies:Observable<any[]>
   listedesAmiesArray =[]
-
+  listMessageArray =[]
 
   listOfFriends:Observable<any[]>
   arrayOfFriends =[]
@@ -66,7 +67,12 @@ if(useruid==null){
    this.listedesAmiesArray = res
  })
  
-    
+ var path = useruid+"/amis/messages/"
+
+ this.listMessage = this.afs.collection(path).valueChanges()
+ this.listMessage.subscribe(res=>{
+  this.listMessageArray = res
+})
 
 
 }
@@ -106,8 +112,23 @@ console.log("------")
 
   }
 
+  testDIv(allUsers){
+    alert("asdads"+allUsers.displayName)
+  }
 
+  openMessage(message){
 
+    if(this.listMessageArray.length==0){
+      Swal.fire('aucun message')
+    }else{
+      this.modalService.open(message,{size :'xl'}) 
+    }
+
+  
+
+   
+
+  }
 
   openIvite(Invitation){
     this.modalService.open(Invitation,{size :'xl'})

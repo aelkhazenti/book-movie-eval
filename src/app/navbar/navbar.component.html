@@ -87,7 +87,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
           <a class="text-white "  >
             | 
           </a>
-          <a class="text-white nav-link"  >
+          <a class="text-white nav-link" (click)="openMessage(message)" >
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="1.3em" height="1.3em" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
 <g id="SPEECH_1_1_" enable-background="new    ">
@@ -102,6 +102,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
 	</g>
 </g>
 </svg>
+  <span class="badge badge-pill badge-success ml-2">{{(listMessage | async)?.length}}</span>
         </a> 
                   <a class="text-white" >
                       |
@@ -261,3 +262,32 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
 </div>
 </ng-template>
 
+
+
+
+<ng-template #message let-c="close" let-d="dismiss">
+  <div *ngIf="auth.user$ | async as user">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> ajouter un amis </h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="listMessageArray.length== 0"> null </div>
+  <div *ngFor="let allUsers of listMessageArray " style="margin-right: 10px;margin-left:10px" >
+  <div class="modal-body" (click)="testDIv(allUsers)" >
+    <div class="media">
+      <img src="../../assets/undraw_book_lover_mkck.svg" class="align-self-center mr-3" style="width: 100px;border-radius: 50%;">
+      <div class="media-body">
+        <h5 class="mt-0">Center-aligned media </h5>
+        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+        <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+      </div>
+    </div>
+  </div>
+  <hr style="border: 2px solid #56CCFF;">
+</div>
+  
+    
+</div>
+</ng-template>

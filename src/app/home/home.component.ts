@@ -330,7 +330,13 @@ const path = item.userUID+"/amis/messages/"
 
 this.afs.collection(path).add(frShare)
 
-console.log("work :) "+item.userUID)
+Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: 'votre filme a ete partager',
+  showConfirmButton: false,
+  timer: 1500
+})
 
 }
 
