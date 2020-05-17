@@ -268,22 +268,24 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
 <ng-template #message let-c="close" let-d="dismiss">
   <div *ngIf="auth.user$ | async as user">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title"> ajouter un amis </h4>
+    <h4 class="modal-title" id="modal-basic-title"> les notifications  </h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div *ngIf="listMessageArray.length== 0"> null </div>
   <div *ngFor="let allUsers of listMessageArray " style="margin-right: 10px;margin-left:10px" >
-  <div class="modal-body" (click)="testDIv(allUsers)" >
-    <div class="media">
-      <img src="../../assets/undraw_book_lover_mkck.svg" class="align-self-center mr-3" style="width: 100px;border-radius: 50%;">
-      <div class="media-body">
-        <h5 class="mt-0">Center-aligned media </h5>
-        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-        <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-      </div>
-    </div>
+    <!-- (click)="testDIv(allUsers)"  -->
+  <div style="padding: 20px; width: 100%; height: 125px; border-radius: 37px; background-color : #DBFFF8;border: 1px solid #0B0A0A;
+  box-sizing: border-box;
+  filter:drop-shadow(5px)" class="form-row"  >
+<div style="width: 78px;height: 84px;" class="col-md-5">
+  <img [src]="allUsers.FriendsIMG" style="width: 78px;height: 84px;left: 71px;  border-radius: 50px;"  >
+</div>
+   <div class="col-md-6">
+    <p style=" margin-top: 20px; " > {{ allUsers.FriendsUsername }} a partager avec vous le {{allUsers.typeItem}} {{allUsers.nameItem}} </p>
+   </div>
+    
   </div>
   <hr style="border: 2px solid #56CCFF;">
 </div>

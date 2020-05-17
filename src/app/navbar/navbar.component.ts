@@ -121,7 +121,7 @@ console.log("------")
     if(this.listMessageArray.length==0){
       Swal.fire('aucun message')
     }else{
-      this.modalService.open(message,{size :'xl'}) 
+      this.modalService.open(message) 
     }
 
   
