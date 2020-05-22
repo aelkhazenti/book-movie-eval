@@ -26,12 +26,14 @@
            <div style="margin: 15px;">
         <div class="col-rm-6">
             <div class="card"  >
-                <img style="width: 350px; height: 400px;" src="{{item.urlimage}}" alt="Card image cap" >
+                <img style="width: 350px; height: 400px;" src="{{item.urlimage}}" alt="Card image cap" (click)="ForComment(item,comment)">
                 <div class="card-body">
-                  <h5 class="card-title"> nom de filme : <strong>{{item.nomfilme}} </strong>  </h5>
+                <small>
+                  <h6 class="card-title"> nom de filme : <strong>{{item.nomfilme}} </strong>  </h6>
                   <p class="card-text">  director <strong>{{item.director}}</strong>  </p>
                   <p class="card-text"> dure du filme : <strong> {{item.durefilm}} </strong>date :<strong>{{item.datesortie}}  </strong> </p>
                   <p class="card-text">categorie : <strong>{{item.categorie}} </strong>  </p>
+                </small>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted"> votre vote : <ngb-rating [(rate)]="item.note" [readonly]="readonlyforme"  [max]="5" (click)="getRating(item)" ></ngb-rating > <button (click)="votre_Vote(item)"(dblclick) ="votre_Vote(item)" >submit</button> </small> 
@@ -62,20 +64,29 @@
         <tr *ngFor="let item of itemArraLivre" >
            <div style="margin: 15px;">
         <div class="col-rm-6">
-            <div class="card">
-                <img style="width: 350px; height: 400px; " src="{{item.urlimage}}" alt="Card image cap">
+            <div class="card"  >
+                <img style="width: 350px; height: 400px; " src="{{item.urlimage}}" alt="Card image cap"(click)="ForComment()">
                 <div class="card-body">
-                  <h5 class="card-title"> nom de livre : <strong>{{item.nomlivre}} </strong>  </h5>
+                  <small>
+                  <h6 class="card-title"> nom de livre : <strong>{{item.nomlivre}} </strong>  </h6>
                    <p > nom d'auteur <strong>{{item.nomauteur}}</strong> </p>
                   <p class="card-text"> nombre de page  : <strong> {{item.nbrpage}} </strong>date :<strong>{{item.dateparu}}  </strong> </p>
                   <p class="card-text">categorie : <strong>{{item.categorie}} </strong>  </p>
+                </small>
                 </div>
                 
                 <div class="card-footer">
                   <small class="text-muted"> votre vote : <ngb-rating [(rate)]="item.note" (click)="votre_Vote(item)" [readonly]="readonlyforme"  [max]="5" ></ngb-rating></small> 
                   <br>
                   <small class="text-muted"><ngb-rating [(rate)]="item.note"  [readonly]="readonly"  [max]="5" ></ngb-rating></small> {{item.note}} /5  prsonne voteee : {{item.nbrvote}}
+                  <div style="margin-left: 4px;" >
+                    <a (click)="partageWhithFriends(content,item)  ">
+                    <svg height="1.1em" viewBox="-21 0 512 512" width="1.1em" xmlns="http://www.w3.org/2000/svg"><path d="m453.332031 85.332031c0 38.292969-31.039062 69.335938-69.332031 69.335938s-69.332031-31.042969-69.332031-69.335938c0-38.289062 31.039062-69.332031 69.332031-69.332031s69.332031 31.042969 69.332031 69.332031zm0 0"/><path d="m384 170.667969c-47.0625 0-85.332031-38.273438-85.332031-85.335938 0-47.058593 38.269531-85.332031 85.332031-85.332031s85.332031 38.273438 85.332031 85.332031c0 47.0625-38.269531 85.335938-85.332031 85.335938zm0-138.667969c-29.417969 0-53.332031 23.9375-53.332031 53.332031 0 29.398438 23.914062 53.335938 53.332031 53.335938s53.332031-23.9375 53.332031-53.335938c0-29.394531-23.914062-53.332031-53.332031-53.332031zm0 0"/><path d="m453.332031 426.667969c0 38.289062-31.039062 69.332031-69.332031 69.332031s-69.332031-31.042969-69.332031-69.332031c0-38.292969 31.039062-69.335938 69.332031-69.335938s69.332031 31.042969 69.332031 69.335938zm0 0"/><path d="m384 512c-47.0625 0-85.332031-38.273438-85.332031-85.332031 0-47.0625 38.269531-85.335938 85.332031-85.335938s85.332031 38.273438 85.332031 85.335938c0 47.058593-38.269531 85.332031-85.332031 85.332031zm0-138.667969c-29.417969 0-53.332031 23.9375-53.332031 53.335938 0 29.394531 23.914062 53.332031 53.332031 53.332031s53.332031-23.9375 53.332031-53.332031c0-29.398438-23.914062-53.335938-53.332031-53.335938zm0 0"/><path d="m154.667969 256c0 38.292969-31.042969 69.332031-69.335938 69.332031-38.289062 0-69.332031-31.039062-69.332031-69.332031s31.042969-69.332031 69.332031-69.332031c38.292969 0 69.335938 31.039062 69.335938 69.332031zm0 0"/><path d="m85.332031 341.332031c-47.058593 0-85.332031-38.269531-85.332031-85.332031s38.273438-85.332031 85.332031-85.332031c47.0625 0 85.335938 38.269531 85.335938 85.332031s-38.273438 85.332031-85.335938 85.332031zm0-138.664062c-29.417969 0-53.332031 23.933593-53.332031 53.332031s23.914062 53.332031 53.332031 53.332031c29.421875 0 53.335938-23.933593 53.335938-53.332031s-23.914063-53.332031-53.335938-53.332031zm0 0"/><path d="m135.703125 245.761719c-7.425781 0-14.636719-3.863281-18.5625-10.773438-5.824219-10.21875-2.238281-23.253906 7.980469-29.101562l197.949218-112.851563c10.21875-5.867187 23.253907-2.28125 29.101563 7.976563 5.824219 10.21875 2.238281 23.253906-7.980469 29.101562l-197.953125 112.851563c-3.328125 1.898437-6.953125 2.796875-10.535156 2.796875zm0 0"/><path d="m333.632812 421.761719c-3.585937 0-7.210937-.898438-10.539062-2.796875l-197.953125-112.851563c-10.21875-5.824219-13.800781-18.859375-7.976563-29.101562 5.800782-10.238281 18.855469-13.84375 29.097657-7.976563l197.953125 112.851563c10.21875 5.824219 13.800781 18.859375 7.976562 29.101562-3.945312 6.910157-11.15625 10.773438-18.558594 10.773438zm0 0"/></svg>
+                   share
+                    </a>
                 </div>
+                </div>
+                
               </div>
         </div>
            </div>
@@ -156,3 +167,92 @@
 
 
 
+<ng-template #comment let-c="close" let-d="dismiss">
+  
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title"> liste des amies </h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="input-group mb-3"  >
+      
+   
+
+    <div class="row">
+      
+         <div style="margin: 15px;">
+      <div class="col-rm-8">
+          <div class="card"  >
+              <img style="width: 450px; height: 400px;" src="{{listComnt.urlimage}}" alt="Card image cap" >
+              <div class="card-body">
+                
+                <h5 class="card-title" > nom de filme : <strong>{{listComnt.nomfilme}} </strong>  </h5>
+                <p class="card-text">  director <strong>{{listComnt.director}}</strong>  </p>
+                <p class="card-text"> dure du filme : <strong> {{listComnt.durefilm}} </strong>date :<strong>{{listComnt.datesortie}}  </strong> </p>
+                <p class="card-text">categorie : <strong>{{listComnt.categorie}} </strong>  </p>
+              </div>
+              <div class="card-footer">
+               
+                <br>
+                <!-- <small class="text-muted"><ngb-rating [(rate)]="listComnt.noteGenerale"  [readonly]="readonly"  [max]="5"  ></ngb-rating></small><small > {{listComnt.noteGenerale}} /5  prsonne vote : {{listComnt.nbrvote}} </small> -->
+             
+<small>
+                <ul class="w3-ul w3-card-4">
+                  <li class="w3-bar">
+                    
+                    <img src="https://www.w3schools.com/howto/img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                    <div class="w3-bar-item">
+                      <span class="w3-large">Mike</span><br>
+                      <span>Web </span>
+                    </div>
+                  </li>
+              
+                  <li class="w3-bar">
+                   
+                    <img src="https://www.w3schools.com/howto/img_avatar.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                    <div class="w3-bar-item">
+                      <span class="w3-large">Jill</span><br>
+                      <span>Support</span>
+                    </div>
+                  </li>
+                </ul>
+
+             
+              </small>
+
+              <div *ngIf="auth.user$ | async as user">
+
+                <hr style="border: 1px solid rgb(69, 69, 70);">
+              
+              
+                <ul class="w3-ul w3-card-4">
+                  <li class="w3-bar">
+                    
+                    <img src="https://www.w3schools.com/howto/img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                    <div class="w3-bar-item">
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="comment" [(ngModel)]="commentUser" >
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="postComment()" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+              
+               
+                </ul>
+              
+              </div>
+            </div>
+            </div>
+      </div>
+         </div>
+      </div>
+    
+  </div>
+</div>
+
+</ng-template>

@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   note=0;
 
 
-
+commentUser:String;
 
   itemFilme :AngularFireList<any>; 
   itemLivre :AngularFireList<any>; 
@@ -48,6 +48,8 @@ export class HomeComponent implements OnInit {
 
 
 itemShare :any
+
+listComnt:Observable<any[]>
 
 listedesAmies:Observable<any[]>
 
@@ -340,6 +342,20 @@ Swal.fire({
 
 }
 
+
+
+ForComment(item,comment){
+
+
+this.listComnt = item
+
+
+  this.modalService.open(comment);
+}
+
+postComment(){
+console.log(this.commentUser)
+}
 
 }
 
