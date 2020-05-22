@@ -199,27 +199,22 @@
                 <br>
                 <!-- <small class="text-muted"><ngb-rating [(rate)]="listComnt.noteGenerale"  [readonly]="readonly"  [max]="5"  ></ngb-rating></small><small > {{listComnt.noteGenerale}} /5  prsonne vote : {{listComnt.nbrvote}} </small> -->
              
-<small>
+              <small>
+               
                 <ul class="w3-ul w3-card-4">
+                  <div *ngFor="let cmnt of commentUSER" >
                   <li class="w3-bar">
                     
-                    <img src="https://www.w3schools.com/howto/img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
-                    <div class="w3-bar-item">
-                      <span class="w3-large">Mike</span><br>
-                      <span>Web </span>
+                    <img [src]="cmnt.userIMG" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                    <div class="w3-bar-item" >
+                      <span class="w3-large">{{cmnt.userNAme}}</span><br>
+                      <span>{{cmnt.userCmnt}} </span>
                     </div>
                   </li>
               
-                  <li class="w3-bar">
-                   
-                    <img src="https://www.w3schools.com/howto/img_avatar.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
-                    <div class="w3-bar-item">
-                      <span class="w3-large">Jill</span><br>
-                      <span>Support</span>
-                    </div>
-                  </li>
+                 </div>
                 </ul>
-
+             
              
               </small>
 
@@ -231,12 +226,12 @@
                 <ul class="w3-ul w3-card-4">
                   <li class="w3-bar">
                     
-                    <img src="https://www.w3schools.com/howto/img_avatar2.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+                    <img [src]="user.photoURL" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
                     <div class="w3-bar-item">
-                      <div class="input-group mb-3">
+                      <div class="input-group mb-3" >
                         <input type="text" class="form-control" placeholder="comment" [(ngModel)]="commentUser" >
                         <div class="input-group-append">
-                          <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="postComment()" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></button>
+                          <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="postComment(user,listComnt)" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></button>
                         </div>
                       </div>
                     </div>
@@ -251,8 +246,9 @@
       </div>
          </div>
       </div>
-    
+    </div>
   </div>
-</div>
+  
+
 
 </ng-template>

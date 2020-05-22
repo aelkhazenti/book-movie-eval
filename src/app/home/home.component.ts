@@ -32,6 +32,11 @@ export class HomeComponent implements OnInit {
 
 commentUser:String;
 
+  commentUSER = []
+
+  Comment :Observable<any[]>
+
+
   itemFilme :AngularFireList<any>; 
   itemLivre :AngularFireList<any>; 
 
@@ -111,15 +116,7 @@ var path = useruid+"/amis/accepted"
     
 
 
-  //  this.starserv.getItem(item).subscribe(items =>{
-    
-  //    if(items==null){
-  //       console.log("null")
-  //    }
-  //    else{
-  //   this.objectItem = items.value;
-  //    }
-  // })
+
 
   console.log("user"+this.objectItem)
   console.log("database"+item.note)
@@ -349,12 +346,42 @@ ForComment(item,comment){
 
 this.listComnt = item
 
+const path = "item/comment/"+item.$key
+
+this.Comment = this.afs.collection(path).valueChanges();
+
+this.Comment.subscribe(res=>{
+  this.commentUSER = res
+})
+
+
+
 
   this.modalService.open(comment);
 }
 
-postComment(){
-console.log(this.commentUser)
+postComment(user,listComnt){
+
+const path = "item/comment/"+listComnt.$key
+
+const userCmnt = this.commentUser
+const userID = user.uid
+const userNAme = user.displayName
+const userIMG = user.photoURL
+
+const shareComnt : commentItem= {
+  userID ,
+  userIMG ,
+  userNAme ,
+  userCmnt 
+}
+
+this.afs.collection(path).add(shareComnt)
+
+
+this.commentUser = null
+
+
 }
 
 }
@@ -413,4 +440,9 @@ export interface itemShare {
 
 }
  
-
+export interface commentItem {
+  userID :String;
+  userIMG : String;
+  userNAme : String;
+  userCmnt : String ;
+}
