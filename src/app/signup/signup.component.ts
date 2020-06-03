@@ -92,6 +92,16 @@ register(){
 
 registerEmail(){
 
+if(this.passwordConfirmationTxt.length < 7 ){
+  Swal.fire({
+    icon: 'error',
+    title: 'mot de passe top petit ',
+    text: 'votre mdp est trop petit il doit etre superieur a 8 charactere ',
+    
+  })
+
+}
+
   this.fire.createUserWithEmailAndPassword(this.email,this.mdp)
   .then(user=>{
     console.log("correct")

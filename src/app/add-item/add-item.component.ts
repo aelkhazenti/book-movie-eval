@@ -239,7 +239,15 @@ this.insertItem()
         type : this.data.type,
         urlimage : this.data.urlimage, 
         note:this.data.note,
-        nbrvote:this.data.nbrVote       
+        nbrvote:this.data.nbrVote  ,    
+        
+        noteGenerale : 0,
+      
+        vote1star :0,
+        vote2star :0,
+        vote3star :0,
+        vote4star :0,
+        vote5star :0, 
       })
     }
     else{
@@ -253,7 +261,16 @@ this.insertItem()
         urlimage : this.data.urlimage,        
         categorie : this.data.categorie,
         note:this.data.note,
-        nbrvote:this.data.nbrVote
+        nbrvote:this.data.nbrVote ,
+        
+    
+        noteGenerale : 0,
+      
+        vote1star :0,
+        vote2star :0,
+        vote3star :0,
+        vote4star :0,
+        vote5star :0,
       })
 
     }

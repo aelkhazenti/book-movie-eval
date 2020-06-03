@@ -112,9 +112,7 @@ console.log("------")
 
   }
 
-  testDIv(allUsers){
-    alert("asdads"+allUsers.displayName)
-  }
+ 
 
   openMessage(message){
 
@@ -281,7 +279,11 @@ search(){
     })
     
   }
- 
+  testFOe(allUsers){
+
+
+
+  }
 
 }
 

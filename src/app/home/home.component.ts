@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   note=0;
 
 
-commentUser:String;
+comment_text : String= null ;
 
   commentUSER = []
 
@@ -83,6 +83,10 @@ listedesAmies:Observable<any[]>
         })
 
         console.log(this.itemArra)
+
+  
+
+        
         this.itemArraLivre=[]
 this.itemLivre = this.db.list('/livre')
 
@@ -105,7 +109,7 @@ var path = useruid+"/amis/accepted"
 
 
   }
-  
+
 
   votre_Vote(item){
 
@@ -364,7 +368,7 @@ postComment(user,listComnt){
 
 const path = "item/comment/"+listComnt.$key
 
-const userCmnt = this.commentUser
+const userCmnt = this.comment_text
 const userID = user.uid
 const userNAme = user.displayName
 const userIMG = user.photoURL
@@ -376,10 +380,15 @@ const shareComnt : commentItem= {
   userCmnt 
 }
 
+if( this.comment_text == null || this.comment_text == " " ){
+  
+  alert("entrer un adasd")
+}else{
+
 this.afs.collection(path).add(shareComnt)
+}
 
-
-this.commentUser = null
+this.comment_text = null
 
 
 }
